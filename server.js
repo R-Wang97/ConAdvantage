@@ -7,91 +7,49 @@ const config = JSON.parse(
     fs.readFileSync(configFile)
 );
 
+const userApi = require('./api/user.js');
 const userRouter = express.Router({mergeParams: true});
-userRouter.route('/create').post(function(httpRequest, httpResponse) {
-    // TODO
-});
+userRouter.route('/create').post(userApi.create);
+userRouter.route('/login').post(userApi.login);
+userRouter.route('/logout').post(userApi.logout);
+userRouter.route('/delete').post(userApi.delete);
 
-userRouter.route('/login').post(function(httpRequest, httpResponse) {
-    // TODO
-});
-
-userRouter.route('/logout').post(function(httpRequest, httpResponse) {
-    // TODO
-});
-
-userRouter.route('/delete').post(function(httpRequest, httpResponse) {
-    // TODO
-});
-
+const floorPlanApi = require('./api/floorplan.js');
 const floorPlanRouter = express.Router({mergeParams: true});
-floorPlanRouter.route('/add').post(function(httpRequest, httpResponse) {
-    // TODO
-});
+floorPlanRouter.route('/add').post(floorPlanApi.add);
+floorPlanRouter.route('/delete').post(floorPlanApi.delete);
+floorPlanRouter.route('/list').post(floorPlanApi.list);
+floorPlanRouter.route('/show').post(floorPlanApi.show);
 
-floorPlanRouter.route('/delete').post(function(httpRequest, httpResponse) {
-    // TODO
-});
-
-floorPlanRouter.route('/list').post(function(httpRequest, httpResponse) {
-    // TODO
-});
-
-floorPlanRouter.route('/show').post(function(httpRequest, httpResponse) {
-    // TODO
-});
-
+const roomApi = require('./api/room.js');
 const roomRouter = express.Router({mergeParams: true});
-roomRouter.route('/generate').post(function(httpRequest, httpResponse) {
-    // TODO
-});
+roomRouter.route('/generate').post(roomApi.generate);
+roomRouter.route('/list').post(roomApi.list);
+roomRouter.route('/:id/get').post(roomApi.get);
+roomRouter.route('/:id/delete').post(roomApi.delete);
 
-roomRouter.route('/list').post(function(httpRequest, httpResponse) {
-    // TODO
-});
-
-roomRouter.route('/:id/get').post(function(httpRequest, httpResponse) {
-    // TODO
-});
-
-roomRouter.route('/:id/delete').post(function(httpRequest, httpResponse) {
-    // TODO
-});
-
+const printoutApi = require('./api/printout.js');
 const printoutRouter = express.Router({mergeParams: true});
-printoutRouter.route('/room/:id').post(function(httpRequest, httpResponse) {
-    // TODO
-});
+printoutRouter.route('/room/:id').post(printoutApi.generate);
+printoutRouter.route('/report').post(printoutApi.reportAll);
+printoutRouter.route('/report/:id').post(printoutApi.report);
 
-printoutRouter.route('/report').post(function(httpRequest, httpResponse) {
-    // TODO
-});
-
-printoutRouter.route('/report/:id').post(function(httpRequest, httpResponse) {
-    // TODO
-});
-
+const analyticsApi = require('./api/analytics.js');
 const analyticsRouter = express.Router({mergeParams: true});
-// TODO
+analyticsRouter.route('/').get(analyticsApi.get);
 
+const landlordApi = require('./api/landlord.js');
 const landlordRouter = express.Router({mergeParams: true});
 landlordRouter.use('/floorplan', floorPlanRouter);
 landlordRouter.use('/room', roomRouter);
 landlordRouter.use('/printout', printoutRouter);
 landlordRouter.use('/analytics', analyticsRouter);
 
+const reportApi = require('./api/report.js');
 const reportRouter = express.Router({mergeParams: true});
-reportRouter.route('/').get(function(httpRequest, httpResponse) {
-    // TODO
-});
-
-reportRouter.route('/update').post(function(httpRequest, httpResponse) {
-    // TODO
-});
-
-reportRouter.route('/submit').post(function(httpRequest, httpResponse) {
-    // TODO
-});
+reportRouter.route('/').get(reportApi.get);
+reportRouter.route('/update').post(reportApi.update);
+reportRouter.route('/submit').post(reportApi.submit);
 
 const apiRouter = express.Router();
 apiRouter.use('/user', userRouter);

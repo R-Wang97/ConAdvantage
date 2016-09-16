@@ -38,7 +38,6 @@ const analyticsApi = require('./api/analytics.js');
 const analyticsRouter = express.Router({mergeParams: true});
 analyticsRouter.route('/').get(analyticsApi.get);
 
-const landlordApi = require('./api/landlord.js');
 const landlordRouter = express.Router({mergeParams: true});
 landlordRouter.use('/floorplan', floorPlanRouter);
 landlordRouter.use('/room', roomRouter);

@@ -29,7 +29,7 @@ function createTables() {
         }
     });
 
-    connection.query('CREATE TABLE IF NOT EXISTS items (id VARCHAR(64), floorplan_id VARCHAR(64), report_id VARCHAR(64), is_default BIT, state VARCHAR(16), name VARCHAR(64), description VARCHAR(512), image_path VARCHAR(256), severity INT, fixable BIT)', function(err) {
+    connection.query('CREATE TABLE IF NOT EXISTS items (id VARCHAR(64), floorplan_id VARCHAR(64), report_id VARCHAR(64), is_default BIT, state VARCHAR(16), name VARCHAR(64), description VARCHAR(512), image_path VARCHAR(256), severity INT, fixable BIT, x INT, y INT)', function(err) {
         if (err) {
             console.log(`Create table items error: ${err}`);
         } else {

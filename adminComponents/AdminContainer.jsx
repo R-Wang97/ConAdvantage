@@ -9,7 +9,7 @@ class AdminContainer extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			showScreenState: 'login'
+			showScreenState: 'report'
 		} 
 	}
 

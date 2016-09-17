@@ -28,7 +28,11 @@
 # users
 
 - username varchar(64)
-- password varchar(64)
-    hashed
+- hash varchar(64)
 - salt varchar(64)
 - iterations int
+
+# tokens
+
+- username varchar(64)
+- token varchar(64)

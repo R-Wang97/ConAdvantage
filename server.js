@@ -1,11 +1,7 @@
 const express = require('express');
-const fs = require('fs');
-
 const app = express();
-const configFile = 'config/config.json';
-const config = JSON.parse(
-    fs.readFileSync(configFile)
-);
+
+const config = require('./api/config.js');
 
 const userApi = require('./api/user.js');
 const userRouter = express.Router({mergeParams: true});

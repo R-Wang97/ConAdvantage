@@ -23,7 +23,7 @@ class App extends React.Component {
 	}
 
 	componentWillReceiveProps(nextProps) {
-		this.setState({roomInfo: nextProps.roomInfo})
+		this.setState({roomInfo: nextProps.roomData})
 	} 
 
 	dotClicked = (input) => {

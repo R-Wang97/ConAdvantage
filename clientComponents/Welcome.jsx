@@ -4,17 +4,17 @@ class Welcome extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			name: 'Bob Saget',
-			roomNum: '123',
-			roomType: 'Bond'
+			name: '',
+			roomNum: '',
+			roomType: ''
 		};
 	}
 
 	componentWillReceiveProps(nextProps) {
 		this.setState({
-			name: nextProps.roomData.name,
-			roomNum: nextProps.roomData.roomNum,
-			roomType: nextProps.roomData.roomType
+			name: nextProps.roomData.tenant,
+			roomNum: nextProps.roomData.number,
+			roomType: nextProps.roomData.floorplan_name
 		});
 	}
 

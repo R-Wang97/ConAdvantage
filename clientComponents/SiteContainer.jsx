@@ -11,13 +11,9 @@ class SiteContainer extends React.Component {
         this.state = {
             idEntered: false,
             showWelcomeScreen: true,
-            roomInfo: {},
+            roomData: {},
             id: ""
         }
-    }
-
-    componentDidMount() {
-        this.getRoomInfo();
     }
 
     getRoomInfo = () => {   
@@ -30,7 +26,7 @@ class SiteContainer extends React.Component {
                 this.setState({roomInfo: data, idEntered: true});
             },
             error: (status) => {
-                console.error(status.status, "Couldn't get room info for id " + id); 
+                console.error(status.status, "Couldn't get room info for id " + this.state.id); 
             }
         });
     }
@@ -56,14 +52,14 @@ class SiteContainer extends React.Component {
         }
         else {
             if (this.state.showWelcomeScreen === true) {
-                if (this.state.roomInfo.submitted === 1) {
+                if (this.state.roomInfo.submitted.data[0] === 1) {
                     return (
                         <h4>You have already submitted your room condition form.</h4>
                     );
                 }
                 return (
                     <div>
-                        <Welcome changeAppState={this.changeAppState} roomData={this.state.roomInfo}/>
+                        <Welcome changeAppState={this.changeAppState} roomData={this.state.roomData}/>
                     </div>
                 );
             }

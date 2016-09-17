@@ -9,7 +9,7 @@ class Login extends React.Component {
 		e.preventDefault();
 		console.log(this.refs.username.getDOMNode.value());
 		const data = {
-			username: this.refs.username.getDOMNode.value();
+			username: this.refs.username.getDOMNode.value()
 		}
 	}
 

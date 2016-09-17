@@ -65,9 +65,5 @@ module.exports = {
     newId: function() {
         // TODO
         return Array(config.IdLength + 1).join("A");
-    },
-    newToken: function() {
-        // TODO
-        return Array(config.TokenLength + 1).join("B");
     }
 }

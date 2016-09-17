@@ -27,7 +27,7 @@ roomRouter.route('/:id/delete').post(roomApi.delete);
 
 const printoutApi = require('./api/printout.js');
 const printoutRouter = express.Router({mergeParams: true});
-printoutRouter.route('/room/:id').post(printoutApi.generate);
+printoutRouter.route('/room/:id').post(printoutApi.produce);
 printoutRouter.route('/report').post(printoutApi.reportAll);
 printoutRouter.route('/report/:id').post(printoutApi.report);
 

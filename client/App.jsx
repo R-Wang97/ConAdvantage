@@ -2,6 +2,7 @@ import React from 'react'
 
 import FloorPlanImage from './FloorPlanImage.jsx';
 import InfoPanel from './InfoPanel.jsx';
+import ControlPanel from './ControlPanel.jsx';
 
 //Import JSON file for floor plan dot objects
 //import ...
@@ -41,6 +42,7 @@ class App extends React.Component {
 			return (
 				<div className='container-fluid'>
 					<FloorPlanImage />
+					<ControlPanel />
 				</div>
 			);
 		}
@@ -49,6 +51,7 @@ class App extends React.Component {
 				<div className='container-fluid'>
 					<FloorPlanImage />
 					<InfoPanel details={this.state.selectedDotObject} roomId={this.state.roomInfo.Id} unselectDot={this.unselectDot}/>
+					<ControlPanel />
 				</div>
 			);
 		}

@@ -6,6 +6,18 @@ module.exports = {
     add: function(httpRequest, httpResponse) {
         let data = JSON.parse(httpRequest.body);
 
+        if (httpRequest.files) {
+            const result = img.storeImage(httpRequest, httpResponse);
+
+            if (result.err) {
+                console.log(`Create new floorplan failed: ${result.err}`);
+                httpResponse.send(result.err);
+                return;
+            }
+
+            data.image_path = result.newPath;
+        }
+
         db.query('INSERT INTO floorplans SET ?', data, function(err) {
             if (err) {
                 console.log(`Create new floorplan failed: ${err}`);
@@ -13,14 +25,6 @@ module.exports = {
                 return;
             }
         });
-
-        if (httpRequest.files) {
-            const err = img.storeImage(httpRequest, httpResponse);
-
-            if (err) {
-                return;
-            }
-        }
 
         httpResponse.setHeader('Content-Type', 'application/json');
         httpResponse.send(data);

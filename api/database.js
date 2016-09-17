@@ -3,7 +3,6 @@
 const mysql = require('mysql')
 const config = require('./config.js');
 const crypto = require('crypto');
-const RANDOM_BYTES=64
 
 const connection = mysql.createConnection({
     host: config.Database.Host,

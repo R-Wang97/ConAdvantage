@@ -1,3 +1,4 @@
+'use strict';
 const db = require('./database.js');
 const crypto = require('crypto');
 const config = require('./config.js');

@@ -54,7 +54,7 @@ apiRouter.use('/:id', reportRouter);
 
 app.use('/api', apiRouter);
 app.use('/', express.static(`${__dirname}/public`));
-app.use('/admin', express.static(`${__dirname}/admin`))
+app.use('/admin', express.static(`${__dirname}/public/admin`))
 
 const port = config.ServerPort;
 const server = app.listen(port); // eslint-ignore no-unused-vars

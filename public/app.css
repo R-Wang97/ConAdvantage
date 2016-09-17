@@ -1,21 +1,18 @@
 body{
-	background-image: url('/Images/TealTriangleBack.jpg');
+	background-image: url('resources/images/TealTriangleBack.jpg');
 	font-family: 'transat_textlight', Helvetica, sans-serif;
 	margin-left: 10%;
 	margin-right: 10%;
 }
 
 #welcomePageName{
-	background-image:  url('Images/WhiteGradBack.jpg');
+	background-image:  url('resources/images/WhiteGradBack.jpg');
 }
 
 #welcomePageName hr{
 	border-style: solid;
 	border-width: 0.1%;
 	border-color: black;
-}
-
-#welcomeTenantInfo{
 }
 
 .btnInfoPanel{

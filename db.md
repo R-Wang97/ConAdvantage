@@ -16,6 +16,8 @@
 - image_path varchar(256)
 - severity int
 - fixable bit
+- x int
+- y int
 
 # reports
 

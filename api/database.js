@@ -21,7 +21,7 @@ connection.connect(function(err){
 });
 
 function createTables() {
-    connection.query('CREATE TABLE IF NOT EXISTS floorplans (id VARCHAR(64), name VARCHAR(64), image_path VARCHAR(256))', function(err) {
+    connection.query('CREATE TABLE IF NOT EXISTS floorplans (id VARCHAR(64), username VARCHAR(64), name VARCHAR(64), image_path VARCHAR(256))', function(err) {
         if (err) {
             console.log(`Create table floorplans error: ${err}`);
         } else {

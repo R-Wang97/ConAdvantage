@@ -6,6 +6,14 @@ module.exports = {
     generate: function(httpRequest, httpResponse) {
         const floorPlanId = httpRequest.params.floorplan_id;
 
+        const token = httpRequest.headers['Authorization'];
+        const rToken = !utils.checkToken(token)
+        if (!rToken) {
+            httpResponse.send('Invalid token');
+            httpResponse.statusCode = 403;
+            return;
+        }
+
         db.query('SELECT * FROM floorplans WHERE id = ?', floorPlanId, function(err, rows) {
             if (err) {
                 console.log(`Create new report failed: ${err}`);
@@ -14,6 +22,10 @@ module.exports = {
             } else if (rows.length == 0) {
                 console.log(`No floorplan found for id ${floorPlanId}`);
                 httpResponse.send(`No floorplan found for id ${floorPlanId}`);
+                return;
+            } else if (rows[0].username != rToken.username) {
+                httpResponse.send('Invalid token');
+                httpResponse.statusCode = 403;
                 return;
             }
         });

@@ -14,23 +14,24 @@
     "react-dom": "^15.3.0",
     "request": "^2.74.0",
     "superagent": "^2.1.0",
-    "webpack": "^1.13.1",
-    "webpack-dev-server": "^1.14.1"
+    "webpack": "^1.13.1"
   },
   "devDependencies": {
+    "babel-preset-stage-0": "^6.5.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node server.js",
+    "webpack": "./node_modules/.bin/webpack -d --watch"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/r-wang97/conadvantage.git"
+    "url": "git+https://github.com/r-wang97/ConAdvantage.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/r-wang97/conadvantage/issues"
+    "url": "https://github.com/r-wang97/ConAdvantage/issues"
   },
-  "homepage": "https://github.com/r-wang97/conadvantage#readme"
+  "homepage": "https://github.com/r-wang97/ConAdvantage#readme"
 }

@@ -1,3 +1,5 @@
+const db = require('./database.js');
+
 module.exports = {
     add: function(httpRequest, httpResponse) {
         // TODO

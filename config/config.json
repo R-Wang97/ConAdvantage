@@ -1,3 +1,9 @@
 {
-	"ServerPort": 3030
+	"ServerPort": 3030,
+	"Database": {
+		"Host": "localhost",
+		"Username": "conned",
+		"Password": "hard",
+		"Database": "conadvantage"
+	}
 }

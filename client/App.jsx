@@ -3,6 +3,9 @@ import React from 'react'
 import FloorPlanImage from './FloorPlanImage.jsx';
 import InfoPanel from './InfoPanel.jsx';
 
+//Import JSON file for floor plan dot objects
+//import ...
+
 class App extends React.Component {
 	constructor(props) {
 		super(props);
@@ -13,7 +16,8 @@ class App extends React.Component {
 				condition: "", 
 				description: ""
 			},
-			roomInfo: {}	
+			roomInfo: {},
+			creatingCustom: false	
 		}
 	}
 
@@ -21,11 +25,15 @@ class App extends React.Component {
 		this.setState({roomInfo: nextProps.roomInfo})
 	} 
 
-	setDotIsClicked = (input) => {
+	dotClicked = (input) => {
 		this.setState({
-			dotIsClicked: input,
-			selectedDotObject: []
+			dotIsClicked: true,
+			selectedDotObject: input
 		});
+	}
+
+	unselectDot = () => {
+		this.setState({dotIsClicked: false})
 	}
 
 	render() {
@@ -42,7 +50,7 @@ class App extends React.Component {
 				<div>
 					<h1>App Goes Here</h1>
 					<FloorPlanImage />
-					<InfoPanel details={this.state.selectedDotObject} roomId={this.state.roomInfo.Id}/>
+					<InfoPanel details={this.state.selectedDotObject} roomId={this.state.roomInfo.Id} unselectDot={this.unselectDot}/>
 				</div>
 			);
 		}

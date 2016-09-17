@@ -1,10 +1,19 @@
 'use strict';
 const db = require('./database.js');
 const img = require('./image.js');
+const utils = require('./utils.js');
 
 module.exports = {
     add: function(httpRequest, httpResponse) {
         let data = JSON.parse(httpRequest.body);
+
+        const token = httpRequest.headers['Authorization'];
+        const rToken = !utils.checkToken(token)
+        if (!rToken) {
+            httpResponse.send('Invalid token');
+            httpResponse.statusCode = 403;
+            return;
+        }
 
         if (httpRequest.files) {
             const result = img.storeImage(httpRequest, httpResponse);
@@ -40,6 +49,14 @@ module.exports = {
     delete: function(httpRequest, httpResponse) {
         let data = JSON.parse(httpRequest.body);
 
+        const token = httpRequest.headers['Authorization'];
+        const rToken = !utils.checkToken(token)
+        if (!rToken) {
+            httpResponse.send('Invalid token');
+            httpResponse.statusCode = 403;
+            return;
+        }
+
         db.query('DELETE * FROM floorplans WHERE ?', data.id, function(err) {
             if (err) {
                 console.log(`Delete floorplan failed: ${err}`);
@@ -52,6 +69,14 @@ module.exports = {
     },
     list: function(httpRequest, httpResponse) {
         const floorplans = [];
+
+        const token = httpRequest.headers['Authorization'];
+        const rToken = !utils.checkToken(token)
+        if (!rToken) {
+            httpResponse.send('Invalid token');
+            httpResponse.statusCode = 403;
+            return;
+        }
 
         db.query('SELECT * FROM floorplans', function(err, rows) {
             if (err) {
@@ -70,6 +95,14 @@ module.exports = {
     },
     show: function(httpRequest, httpResponse) {
         const id = httpRequest.params.id;
+
+        const token = httpRequest.headers['Authorization'];
+        const rToken = !utils.checkToken(token)
+        if (!rToken) {
+            httpResponse.send('Invalid token');
+            httpResponse.statusCode = 403;
+            return;
+        }
 
         db.query('SELECT * FROM floorplans WHERE id = ?', id, function(err, rows) {
             if (err) {

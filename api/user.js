@@ -1,8 +1,8 @@
 const db = require('./database.js');
 const crypto = require('crypto');
 
-const SALT_LENGTH = 256;
-const KEY_LENGTH = 256;
+const SALT_LENGTH = 32;
+const KEY_LENGTH = 32;
 const ITERATIONS = 32768;
 
 module.exports = {

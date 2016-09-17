@@ -32,7 +32,6 @@ class SiteContainer extends React.Component {
     }
 
     changeAppState = () => {
-        console.log("test");
         this.setState({showWelcomeScreen: !this.state.showWelcomeScreen});
     }
 

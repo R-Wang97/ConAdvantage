@@ -3,15 +3,85 @@ const db = require('./database.js');
 
 module.exports = {
     generate: function(httpRequest, httpResponse) {
-        // TODO        
+        const floorPlanId = httpRequest.params.floorplan_id;
+
+        db.conn.query('SELECT * FROM floorplans WHERE id = ?', floorPlanId, function(err, rows) {
+            if (err) {
+                console.log(`Create new report failed: ${err}`);
+                httpResponse.send(err);
+                return;
+            } else if (rows.length == 0) {
+                console.log(`No floorplan found for id ${floorPlanId}`);
+                httpResponse.send(`No floorplan found for id ${floorPlanId}`);
+                return;
+            }
+        });
+
+        // Somehow load default items as JSON
+        const defaultItems = '';
+
+        const newReport = {
+            id: db.newId(),
+            floorplan_id: floorPlanId,
+            default_items: defaultItems,
+            custom_items: '',
+            submitted: 0
+        };
+
+        db.conn.query('INSERT INTO reports SET ?', newReport, function(err) {
+            if (err) {
+                console.log(`Create report failed: ${err}`);
+                httpResponse.send(err);
+                return;
+            }
+        });
+
+        httpResponse.setHeader('Content-Type', 'application/json');
+        httpResponse.send(newReport);
     },
     list: function(httpRequest, httpResponse) {
-        // TODO        
+        const reports = [];
+
+        db.conn.query('SELECT * FROM reports', function(err, rows) {
+            if (err) {
+                console.log(`List reports failed: ${err}`);
+                httpResponse.send(err);
+                return;
+            }
+
+            rows.forEach(function(row) {
+                reports.push(row);
+            });
+        });
+        
+        httpResponse.setHeader('Content-Type', 'application/json');
+        httpResponse.send(reports);
     },
     get: function(httpRequest, httpResponse) {
-        // TODO        
+        const id = httpRequest.params.id;
+
+        db.conn.query('SELECT * FROM reports WHERE id = ?', id, function(err, rows) {
+            if (err) {
+                console.log(`Get report failed: ${err}`);
+                httpResponse.send(err);
+                return;
+            }
+
+            httpResponse.setHeader('Content-Type', 'application/json');
+            httpResponse.send(rows[0]);
+        });
     },
     delete: function(httpRequest, httpResponse) {
-        // TODO        
+        const id = httpRequest.params.id;
+
+        db.conn.query('DELETE * FROM reports WHERE id = ?', id, function(err) {
+            if (err) {
+                console.log(`Delete report failed: ${err}`);
+                httpResponse.send(err);
+                return;
+            }
+
+            httpResponse.send('Delete report successful')
+        });       
     }
 }

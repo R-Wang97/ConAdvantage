@@ -3,38 +3,52 @@ import React from 'react';
 class Welcome extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = (
-			name = '',
-			roomNum = '',
-			roomType = ''
-		);
+		this.state = {
+			name: 'Test',
+			roomNum: 'Test123',
+			roomType: 'TestBond'
+		};
 	}
+
+	componentWillReceiveProps(nextProps) {
+		this.setState({
+			name: nextProps.roomData.name,
+			roomNum: nextProps.roomData.roomNum,
+			roomType: nextProps.roomData.roomType
+		});
+	}
+
 	render() {
-		const welcomeScreenContent = (
-			<div className = 'container'>
-				<div className = 'contents'>
-					<div className = 'center' id = 'welcomePageName'>
-						<h1>Room Condition Form</h1>
-						<hr />
-					</div>
-					<div className = 'row' id = 'welcomeTenantInfo'>
-						<div className = 'col-md-4'>
-							<h3>Hello (name){this.state.name}</h3>
-							<h3>Your Room Number is: (room #){this.state.roomNum}</h3>
-							<h3>Your Room Type: (room type){this.state.roomType}</h3>
+		return (
+			<div className='container-fluid'>
+				<div className='contents'>
+					<div className='row' id='welcomePageName'>
+						<div className='col-md-10'>
+							<h1>Room Condition Form</h1>
+							<hr />
 						</div>
 					</div>
-					<div className = 'row' id = 'welcomeConfirmInfo'>
-						<h5>If this information is correct please proceed to the next page and complete the room conditions form.</h5>
-						<h5>If this is not you please contact ~~~~~~~~~~</h5> 
+					<div className='row' id='welcomeTenantInfo'>
+						<div className='col-md-10'>
+							<h3>Hello {this.state.name}</h3>
+							<h3>Your Room Number is: {this.state.roomNum}</h3>
+							<h3>Your Room Type: {this.state.roomType}</h3>
+						</div>
 					</div>
-					<div className = 'center' id = 'welcomeButton'>
-						<button type = 'button' className = 'btn btn-primary btn-lg btn-block'><h3>Continue to Form >></h3></button>
+					<div className='row' id='welcomeConfirmInfo'>
+						<div className='col-md-10'>
+							<h5>If this information is correct please proceed to the next page.
+							If this is not you please contact ~~~~~~~~~~</h5> 
+						</div>
+					</div>
+					<div className='row' id='welcomeButton'>
+						<div className='col-md-6 text-centered'>
+							<button type='button' className='btn btn-primary btn-lg btn-block'>Continue to Form >></button>
+						</div>
 					</div>
 				</div>
 			</div>
 		);
-		return (welcomeScreenContent);
 	}
 }
 

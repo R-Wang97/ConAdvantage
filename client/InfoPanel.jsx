@@ -43,26 +43,28 @@ class InfoPanel extends React.Component {
         return (
             <div>
                 <div className='row'>
-                    <div className='col-md-6'>
-                        <form>
+                    <div className='col-md-6' id='infoForm'>
+                        <form ="/authenticate" method="post">
                             <label>Item</label>
                             <input className="form-control" placeholder="Enter item name"/>
-                            <label className="radio-inline">
-                                <input type="checkbox" value="good"/> Good 
-                            </label>
-                            <label className="radio-inline">
-                                <input type="checkbox" value="missing"/> Missing
-                            </label>
-                            <label className="radio-inline">
-                                <input type="checkbox" value="damaged"/> Damaged
-                            </label> 
-                            <div className="form-group">
-                                <label>Description</label>
-                                <textarea className="form-control" rows="3"></textarea>
+                                <label className="radio-inline">
+                                    <input type="checkbox" value="good"/> Good 
+                                </label>
+                                <label className="radio-inline">
+                                    <input type="checkbox" value="missing"/> Missing
+                                </label>
+                                <label className="radio-inline">
+                                    <input type="checkbox" value="damaged"/> Damaged
+                                </label> 
+                                <div className="form-group">
+                                    <label>Description</label>
+                                    <textarea className="form-control" rows="3"></textarea>
                             </div>
-                            <button type='button' className='btn btn-primary btn-md'>Save</button>
-                            <button type='button' className='btn btn-default btn-md'>Clear</button>
-                            <button type='button' className='btn btn-default btn-md'>Cancel</button>
+                            <div className='btnInfoPanel' id='btnInfoPanel'>
+                                <button type='button' className='btn btn-primary btn-md'>Save</button>
+                                <button type='button' className='btn btn-default btn-md'>Clear</button>
+                                <button type='button' className='btn btn-default btn-md'>Cancel</button>
+                            </div>
                         </form>
                     </div>
                 </div>

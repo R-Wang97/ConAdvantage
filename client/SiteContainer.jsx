@@ -7,7 +7,7 @@ class SiteContainer extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            showWelcomeScreen: true,
+            showWelcomeScreen: false,
             roomInfo: {},
         }
     }
@@ -46,7 +46,6 @@ class SiteContainer extends React.Component {
         else {
             return (
                 <div>
-                    <p>Don't show Welcome Screen</p>
                     <App roomData={this.state.roomInfo} />
                 </div>
             );

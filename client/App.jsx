@@ -10,11 +10,11 @@ class App extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			dotIsClicked: false,
+			dotIsClicked: true,
 			selectedDotObject: {
-				item: "",
-				condition: "", 
-				description: ""
+				item: '',
+				condition: '', 
+				description: ''
 			},
 			roomInfo: {},
 			creatingCustom: false	
@@ -39,7 +39,7 @@ class App extends React.Component {
 	render() {
 		if (this.state.dotIsClicked === false) {
 			return (
-				<div>
+				<div className='container-fluid'>
 					<h1>App Goes Here</h1>
 					<FloorPlanImage />
 				</div>
@@ -47,8 +47,7 @@ class App extends React.Component {
 		}
 		else if (this.state.dotIsClicked === true) {
 			return (
-				<div>
-					<h1>App Goes Here</h1>
+				<div className='container-fluid'>
 					<FloorPlanImage />
 					<InfoPanel details={this.state.selectedDotObject} roomId={this.state.roomInfo.Id} unselectDot={this.unselectDot}/>
 				</div>

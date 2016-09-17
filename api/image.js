@@ -30,7 +30,7 @@ module.exports = {
     // Call this function in any function that might take a file
     storeImage: function(httpRequest, httpResponse) {
         const data = JSON.parse(httpRequest.body);
-        const fileType = data.type; // Either 'floorplan' or 'item'
+        const fileType = data.type; // Either 'floorplan', 'item' or 'logo'
         const id = data.id;
         const newPath = `${__dirname}/uploads/${id}_${fileType}${getFileExtension(httpRequest.files.image.path)}`;
 

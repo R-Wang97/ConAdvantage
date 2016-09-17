@@ -45,7 +45,7 @@ function createTables() {
         }
     });
 
-    connection.query('CREATE TABLE IF NOT EXISTS users (username VARCHAR(64), hash VARCHAR(64), salt VARCHAR(64), iterations INT, logo_path VARCHAR(256), report_blurb VARCHAR(2048))', function(err) {
+    connection.query('CREATE TABLE IF NOT EXISTS users (username VARCHAR(64), hash VARCHAR(64), salt VARCHAR(64), iterations INT, report_blurb VARCHAR(2048))', function(err) {
         if (err) {
             console.log(`Create table users error: ${err}`);
         } else {

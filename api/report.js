@@ -19,9 +19,9 @@ module.exports = {
     update: function(httpRequest, httpResponse) {
         const report = JSON.parse(httpRequest.body);
 
-        db.conn.query('UPDATE reports SET * WHERE id = ?', report.id, function(err) {
+        db.conn.query('UPDATE reports SET * WHERE id = ?', [report, report.id], function(err) {
             if (err) {
-                console.log(`Get report failed: ${err}`);
+                console.log(`Update report failed: ${err}`);
                 httpResponse.send(err);
                 return;
             }
@@ -33,9 +33,9 @@ module.exports = {
         const report = JSON.parse(httpRequest.body);
         report.submitted = 1;
 
-        db.conn.query('UPDATE reports SET * WHERE id = ?', report.id, function(err) {
+        db.conn.query('UPDATE reports SET * WHERE id = ?', [report, report.id], function(err) {
             if (err) {
-                console.log(`Get report failed: ${err}`);
+                console.log(`Update report failed: ${err}`);
                 httpResponse.send(err);
                 return;
             }

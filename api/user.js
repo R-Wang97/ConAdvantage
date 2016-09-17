@@ -126,6 +126,6 @@ module.exports = {
             }
         });
 
-        httpResponse.send('Successfully deleted user.');
+        httpResponse.send('Delete user successful');
     }
 }

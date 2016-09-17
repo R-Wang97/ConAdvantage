@@ -1,6 +1,11 @@
 node_modules/
 npm-debug.log
+<<<<<<< 500c29b0f409497c0bfd3d1b9102ab1ffb184490
 public/*.js
 public/*.js.map
-
-
+.DS_STORE
+=======
+public/bundle.js
+public/bundle.js.map
+.DS_Store
+>>>>>>> Removed DS_Store

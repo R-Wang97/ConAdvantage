@@ -7,7 +7,7 @@ class SiteContainer extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            showWelcomeScreen: false,
+            showWelcomeScreen: true,
             roomInfo: {},
         }
     }
@@ -16,7 +16,7 @@ class SiteContainer extends React.Component {
         this.getRoomInfo();
     }
 
-    getRoomInfo = () => {
+    getRoomInfo = () => {   
         //get {id} from window.location.href
         const id = "";
         $.ajax({
@@ -31,8 +31,9 @@ class SiteContainer extends React.Component {
         });
     }
 
-    changeAppState = (input) => {
-        this.setState({showWelcomeScreen: input});
+    changeAppState = () => {
+        console.log("test");
+        this.setState({showWelcomeScreen: !this.state.showWelcomeScreen});
     }
 
 	render() {

@@ -2,19 +2,20 @@ var webpack = require('webpack');
 var path = require('path');
 
 var BUILD_DIR = path.resolve(__dirname, 'public');
-var APP_DIR = path.resolve(__dirname, 'client');
 
 var config = {
-    entry: APP_DIR + '/root.jsx',
+    entry: {
+        client: './client/root.jsx',
+        admin: './adminComponents/AdminContainer.jsx'
+    },
     output: {
         path: BUILD_DIR,
-        filename: 'bundle.js'
+        filename: '[name].bundle.js'
     },
     module: {
         loaders: [
             {
                 test: /\.jsx?/,
-                include: APP_DIR,
                 loader: 'babel'
             }
         ]

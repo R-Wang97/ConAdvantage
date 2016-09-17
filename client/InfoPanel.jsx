@@ -44,7 +44,7 @@ class InfoPanel extends React.Component {
             <div>
                 <div className='row'>
                     <div className='col-md-6' id='infoForm'>
-                        <form ="/authenticate" method="post">
+                        <form onSubmit={this.onSaveClick} method="post">
                             <label>Item</label>
                             <input className="form-control" placeholder="Enter item name"/>
                                 <label className="radio-inline">

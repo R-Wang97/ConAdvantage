@@ -4,8 +4,9 @@ import Login from './Login.jsx';
 import Filter from './Filter.jsx';
 import Report from './Report.jsx';
 
-class AdminContainer extends React.Component{
-	constructor(props){
+class AdminContainer extends React.Component {
+	constructor(props) {
+		super(props);
 		this.state = {
 			showScreenState: 'login',
 		} 
@@ -19,13 +20,13 @@ class AdminContainer extends React.Component{
 	        this.setState({showWelcomeScreen: stateNum});
 	}
 
-	render(){
-		if (this.state.showScreenState === 'login') {\
+	render() {
+		if (this.state.showScreenState === 'login') {
 			return (
 				<div>
 					<Login changeAppState={this.changeAppState} />
 				</div>
-			};
+			);
 		}
 
 		else if (this.state.showScreenState === 'filter') {
@@ -46,4 +47,4 @@ class AdminContainer extends React.Component{
 	}
 }
 
-ReactDOM.render(<AdminContainer/>, getElementById('app'))
+ReactDOM.render(<AdminContainer/>, getElementById('app'));

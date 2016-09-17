@@ -1,6 +1,6 @@
 import React from 'react';
 
-class loginScreen extends React.component {
+class Login extends React.component {
 	constructor(props) {
 		super(props);
 	}
@@ -14,7 +14,6 @@ class loginScreen extends React.component {
 		return(
 			<div className='container'>
 				<div className='row'>
-				{/* change on onSubmit later, based on backend*/}
                     <form onSubmit='authenticate'>
 						<h1 className='loginText'>Administrator Login</h1>
 						<div className='form-group'>
@@ -33,4 +32,4 @@ class loginScreen extends React.component {
 	}
 }
 
-export default loginScreen
+export default Login

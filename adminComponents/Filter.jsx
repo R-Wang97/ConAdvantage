@@ -1,6 +1,6 @@
 import React from 'react';
 
-class filterScreen extends React.component {
+class Filter extends React.component {
 	constructor(props) {
 		super(props);
 	}
@@ -35,4 +35,4 @@ class filterScreen extends React.component {
 	}
 }
 
-export deault filterScreen
+export default Filter

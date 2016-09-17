@@ -51,7 +51,7 @@ module.exports = {
                 row.blurb = rows[0].report_blurb;
             }
         });
-        let url = `${config.BaseUrl}/${id}`;
+        let url = `http://${config.BaseUrl}/${id}`;
         let definition = {
             pageSize: 'LETTER',
             content: [

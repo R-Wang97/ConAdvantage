@@ -15,7 +15,7 @@ module.exports = {
                 return;
             }
 
-            data.image_path = result.newPath;
+            data.image_path = result.path;
         }
 
         db.query('INSERT INTO floorplans SET ?', data, function(err) {

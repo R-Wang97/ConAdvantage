@@ -1,0 +1,25 @@
+body{
+	background-image: url('/Images/TealTriangleBack.jpg');
+	font-family: 'transat_textlight', Helvetica, sans-serif;
+	padding-left: 10%;
+	padding-right: 10%;
+}
+
+#welcomePageName{
+	background-image:  url('Images/WhiteGradBack.jpg');
+	padding: 1.5%;
+}
+
+#welcomePageName h1{
+	margin-bottom: -0.12%;
+}
+
+#welcomePageName hr{
+	border-style: solid;
+	border-width: 0.1%;
+	border-color: black;
+}
+
+#welcomeTenantInfo{
+}
+

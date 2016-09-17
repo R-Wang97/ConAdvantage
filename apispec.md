@@ -13,9 +13,9 @@ Paths
 			/add
 			/delete
 			/list
-			/show
+			/{id}/show
 		/room
-			/generate
+			/{floorplan_id}/generate
 			/{id}/get
 			/{id}/delete
 			/list

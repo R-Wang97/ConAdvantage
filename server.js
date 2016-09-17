@@ -16,7 +16,7 @@ const floorPlanRouter = express.Router({mergeParams: true});
 floorPlanRouter.route('/add').post(floorPlanApi.add);
 floorPlanRouter.route('/delete').post(floorPlanApi.delete);
 floorPlanRouter.route('/list').post(floorPlanApi.list);
-floorPlanRouter.route('/show').post(floorPlanApi.show);
+floorPlanRouter.route('/:id/show').post(floorPlanApi.show);
 
 const roomApi = require('./api/room.js');
 const roomRouter = express.Router({mergeParams: true});

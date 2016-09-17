@@ -100,7 +100,7 @@ module.exports = {
         token = data.token;
         let username = '';
 
-        db.conn.query('SELETE FROM tokens WHERE token = ?', token, function(err, rows) {
+        db.conn.query('DELETE FROM tokens WHERE token = ?', token, function(err, rows) {
             if (err) {
                 console.log(`Delete failed: ${err}`);
                 httpResponse.send(err);

@@ -10,6 +10,7 @@
 - floorplan_id varchar(64)
 - report_id varchar(64)
 - is_default bit
+- state varchar(16)
 - name varchar(64)
 - description varchar(512)
 - image_path varchar(256)
@@ -24,6 +25,7 @@
     ids separated by ;
 - custom_items varchar(2048)
     ids separated by ;
+- submitted bit
 
 # users
 

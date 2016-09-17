@@ -13,7 +13,7 @@ Paths
 			/add
 			/delete
 			/list
-			/show
+			/{id}/show
 		/room
 			/{floorplan_id}/generate
 			/{id}/get

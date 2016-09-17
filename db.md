@@ -1,6 +1,7 @@
 # floorplan
 
 - id varchar(64)
+- username varchar(64)
 - name varchar(64)
 - image_path varchar(256)
 

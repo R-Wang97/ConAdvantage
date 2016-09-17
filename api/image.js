@@ -38,7 +38,10 @@ module.exports = {
             if (err) {
                 console.log(`Failed to read file: ${err}`);
                 httpResponse.send(err);
-                return err;
+                return {
+                    err: err,
+                    path: null
+                };
             }
 
             if (isNotImage(data)) {
@@ -46,7 +49,10 @@ module.exports = {
                 error.http_code = 415;
                 console.log(`${error}`);
                 httpResponse.send(error);
-                return error;
+                return {
+                    err: error,
+                    path: null
+                };
             }
         });
 
@@ -54,10 +60,16 @@ module.exports = {
             if (err) {
                 console.log(`Rename file failed: ${err}`);
                 httpResponse.send(err);
-                return err;
+                return {
+                    err: err,
+                    path: null
+                };
             }
 
-            httpResponse.send(newPath);
+            return {
+                err: null,
+                path: newPath
+            };
         });
     }
 }

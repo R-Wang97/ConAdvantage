@@ -33,7 +33,8 @@ printoutRouter.route('/report/:id').post(printoutApi.report);
 
 const analyticsApi = require('./api/analytics.js');
 const analyticsRouter = express.Router({mergeParams: true});
-analyticsRouter.route('/').get(analyticsApi.get);
+analyticsRouter.route('/heatmap').get(analyticsApi.getHeatMap);
+analyticsRouter.route('/average').get(analyticsApi.getAverage);
 
 const landlordRouter = express.Router({mergeParams: true});
 landlordRouter.use('/floorplan', floorPlanRouter);
@@ -57,5 +58,5 @@ app.use('/', express.static(`${__dirname}/public`));
 app.use('/admin', express.static(`${__dirname}/public/admin`))
 
 const port = config.ServerPort;
-const server = app.listen(port); // eslint-ignore no-unused-vars
+const server = app.listen(port);
 console.log(`Listening on port ${port}`);

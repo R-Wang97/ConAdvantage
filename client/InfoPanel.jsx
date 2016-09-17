@@ -19,7 +19,14 @@ class InfoPanel extends React.Component {
 	onSaveClick = () => {
 		//Endpoint is "/api/{id}/update" 
 		$.ajax({
-			url: "/api/"
+			url: "/api/" + roomId + "/update",
+			cache: false,
+			success: (data) => {
+				
+			},
+			error: (status) => {
+				console.error(status.status, "Couldn't get room info for id " + roomId)
+			} 
 		});
 		this.props.unselectDot();
 	}

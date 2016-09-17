@@ -36,6 +36,8 @@
 - hash varchar(64)
 - salt varchar(64)
 - iterations int
+- logo_path varchar(256)
+- report_blurb varchar(2048)
 
 # tokens
 

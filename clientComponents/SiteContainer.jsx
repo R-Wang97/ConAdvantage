@@ -7,8 +7,9 @@ class SiteContainer extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            showWelcomeScreen: true,
+            showWelcomeScreen: false,
             roomInfo: {},
+            responseSubmitted: false
         }
     }
 
@@ -23,7 +24,7 @@ class SiteContainer extends React.Component {
             url: "/api/" + id,
             cache: false,
             success: (data) => {
-                this.setState({roomInfo: data});
+                this.setState({roomInfo: data, responseSubmitted: false});
             },
             error: (status) => {
                 console.error(status.status, "Couldn't get room info for id " + id); 
@@ -37,19 +38,22 @@ class SiteContainer extends React.Component {
 
 	render() {
         if (this.state.showWelcomeScreen === true) {
+            if (this.state.responseSubmitted === true) {
+                return (
+                    <h4>You have already submitted your room condition form.</h4>
+                );
+            }
             return (
                 <div>
                     <Welcome changeAppState={this.changeAppState} roomData={this.state.roomInfo}/>
                 </div>
             );
         }
-        else {
-            return (
-                <div>
-                    <App roomData={this.state.roomInfo} />
-                </div>
-            );
-        }
+        return (
+            <div>
+                <App roomData={this.state.roomInfo} />
+            </div>
+        );
 	}
 }
 

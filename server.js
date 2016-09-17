@@ -10,6 +10,8 @@ userRouter.route('/create').post(userApi.create);
 userRouter.route('/login').post(userApi.login);
 userRouter.route('/logout').post(userApi.logout);
 userRouter.route('/delete').post(userApi.delete);
+userRouter.route('/logo').post(userApi.logo);
+userRouter.route('/blurb').post(userApi.blurb);
 
 const floorPlanApi = require('./api/floorplan.js');
 const floorPlanRouter = express.Router({mergeParams: true});

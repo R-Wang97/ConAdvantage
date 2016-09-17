@@ -127,5 +127,7 @@ module.exports = {
         });
 
         httpResponse.send('Delete user successful');
-    }
+    },
+    logo: function(httpRequest, httpResponse) {},
+    blurb: function(httpRequest, httpResponse) {}
 }

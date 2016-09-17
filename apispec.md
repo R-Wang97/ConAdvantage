@@ -8,6 +8,8 @@ Paths
 		/login
 		/logout
 		/delete <- not sure if we should include this
+		/logo
+		/blurb
 	/landlord
 		/floorplan
 			/add

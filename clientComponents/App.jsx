@@ -41,8 +41,14 @@ class App extends React.Component {
 		if (this.state.dotIsClicked === false) {
 			return (
 				<div className='container-fluid'>
-					<div className='row'>
-						<FloorPlanImage />
+					<div className='formText'>
+						<h2>Room Condition Form</h2>
+						<hr />
+					</div>
+					<div className='formPanels'>
+						<div className='row' id='floorPlan'>
+							<FloorPlanImage />
+						</div>
 					</div>
 					<div className='row'>
 						<ControlPanel />
@@ -53,9 +59,15 @@ class App extends React.Component {
 		else if (this.state.dotIsClicked === true) {
 			return (
 				<div className='container-fluid'>
-					<div className='row'>
-						<FloorPlanImage />
-						<InfoPanel details={this.state.selectedDotObject} roomId={this.state.roomInfo.Id} unselectDot={this.unselectDot}/>
+					<div className='formText'>
+						<h2>Room Condition Form</h2>
+						<hr />
+					</div>
+					<div className='formPanels'>
+						<div className='row' id='floorPlan'>
+							<FloorPlanImage />
+							<InfoPanel details={this.state.selectedDotObject} roomId={this.state.roomInfo.Id} unselectDot={this.unselectDot}/>
+						</div>
 					</div>
 					<div className='row'>
 						<ControlPanel />			

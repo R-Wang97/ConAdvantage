@@ -1,4 +1,5 @@
 {
+	"BaseUrl": "http://localhost:3030/",
 	"ServerPort": 3030,
 	"Database": {
 		"Host": "localhost",

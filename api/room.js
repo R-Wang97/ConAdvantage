@@ -55,6 +55,14 @@ module.exports = {
     list: function(httpRequest, httpResponse) {
         const reports = [];
 
+        const token = httpRequest.headers['Authorization'];
+        const rToken = !utils.checkToken(token)
+        if (!rToken) {
+            httpResponse.send('Invalid token');
+            httpResponse.statusCode = 403;
+            return;
+        }
+
         db.query('SELECT * FROM reports', function(err, rows) {
             if (err) {
                 console.log(`List reports failed: ${err}`);
@@ -64,6 +72,12 @@ module.exports = {
 
             rows.forEach(function(row) {
                 reports.push(row);
+
+                if (row.username != rToken.username) {
+                    httpResponse.send('Invalid token');
+                    httpResponse.statusCode = 403;
+                    return;
+                }
             });
         });
         
@@ -73,10 +87,22 @@ module.exports = {
     get: function(httpRequest, httpResponse) {
         const id = httpRequest.params.id;
 
+        const token = httpRequest.headers['Authorization'];
+        const rToken = !utils.checkToken(token)
+        if (!rToken) {
+            httpResponse.send('Invalid token');
+            httpResponse.statusCode = 403;
+            return;
+        }
+
         db.query('SELECT * FROM reports WHERE id = ?', id, function(err, rows) {
             if (err) {
                 console.log(`Get report failed: ${err}`);
                 httpResponse.send(err);
+                return;
+            } else if (rows[0].username != rToken.username) {
+                httpResponse.send('Invalid token');
+                httpResponse.statusCode = 403;
                 return;
             }
 
@@ -87,10 +113,22 @@ module.exports = {
     delete: function(httpRequest, httpResponse) {
         const id = httpRequest.params.id;
 
+        const token = httpRequest.headers['Authorization'];
+        const rToken = !utils.checkToken(token)
+        if (!rToken) {
+            httpResponse.send('Invalid token');
+            httpResponse.statusCode = 403;
+            return;
+        }
+
         db.query('DELETE * FROM reports WHERE id = ?', id, function(err) {
             if (err) {
                 console.log(`Delete report failed: ${err}`);
                 httpResponse.send(err);
+                return;
+            } else if (rows[0].username != rToken.username) {
+                httpResponse.send('Invalid token');
+                httpResponse.statusCode = 403;
                 return;
             }
 

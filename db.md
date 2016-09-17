@@ -23,6 +23,9 @@
 # reports
 
 - id varchar(64)
+- tenant varchar(64)
+- number varchar(64)
+- floorplan_name varchar(64)
 - floorplan_id varchar(64)
 - default_items varchar(2048)
     ids separated by ;

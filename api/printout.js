@@ -2,6 +2,7 @@
 const path = require('path');
 const db = require('./database.js');
 const pdfmake = require('pdfmake');
+const config = require('./config.js');
 
 
 function resolvePath(relFontPath) {
@@ -21,24 +22,47 @@ const printer = new pdfmake(fonts);
 
 module.exports = {
     produce: function(httpRequest, httpResponse) {
-        // TODO
-        var image = 'tux.png';
-        var blurb = `
-        This blurb will be filled in by the landlord.
+        let data = JSON.parse(httpRequest.body);
+        const token = data.token;
+        const id = httpRequest.params.id;
 
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vitae massa dolor. Interdum et malesuada fames ac ante ipsum primis in faucibus. Sed vel elit nec arcu rhoncus dictum vitae quis ipsum. Praesent non cursus erat. Etiam in tellus eget justo commodo venenatis. Quisque blandit, odio in dictum commodo, lacus arcu suscipit orci, a tempor est justo at justo. In mollis ultrices ex at faucibus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Phasellus nec finibus purus, vitae semper ipsum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aenean rutrum vel arcu eget euismod. Nullam a mi quis nunc eleifend tempor. Morbi dignissim nec dolor vel ultrices.`;
-        var url = 'http://example.com/idwillgohere';
+        let username = '';
+
+        db.query('SELECT * FROM tokens WHERE token = ?', token, function(err, rows) {
+            if (err) {
+                console.log(`Invalid token: ${err}`);
+                httpResponse.statusCode = 403;
+                httpResponse.send(err);
+                return;
+            } else {
+                username = rows[0].username;
+            }
+        });
+
+        let row = {};
+        db.query('SELECT * FROM users WHERE username = ?', [username], function(err, rows) {
+            if (err) {
+                console.log(`Database error: ${err}`);
+                httpResponse.statusCode = 500;
+                httpResponse.send(err);
+                return;
+            } else {
+                row.image = rows[0].logo_path;
+                row.blurb = rows[0].report_blurb;
+            }
+        });
+        let url = `http://${config.BaseUrl}/${id}`;
         let definition = {
             pageSize: 'LETTER',
             content: [
                 {
-                    image: image,
+                    image: row.image,
                     fit: [300, 50],
                     alignment: 'right',
                     style: 'header'
                 },
                 {
-                    text: blurb
+                    text: row.blurb
                 },
                 { text: '\n' },
                 {

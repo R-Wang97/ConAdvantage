@@ -3,6 +3,7 @@ const db = require('./database.js');
 const crypto = require('crypto');
 const config = require('./config.js');
 const utils = require('./utils.js');
+const img = require('./image.js');
 
 function comparePasswordWithHash(password, hash, salt, iterations) {
     return crypto.pbkdf2Sync(password, salt, iterations, config.Password.KeyLength, config.Password.HashFunction) == hash;
@@ -49,7 +50,7 @@ module.exports = {
 
         const username = data.username;
         const password = data.password;
-        
+
         let user = null;
         db.query('SELECT * FROM users WHERE username = ?', username, function(err, rows) {
             if (err) {
@@ -127,5 +128,70 @@ module.exports = {
         });
 
         httpResponse.send('Delete user successful');
+    },
+    logo: function(httpRequest, httpResponse) {
+        let data = JSON.parse(httpRequest.body);
+
+        let username = '';
+
+        db.query('SELECT * FROM tokens WHERE token = ?', token, function(err, rows) {
+            if (err) {
+                console.log(`Invalid token: ${err}`);
+                httpResponse.statusCode = 403;
+                httpResponse.send(err);
+                return;
+            } else {
+                username = rows[0].username;
+            }
+        });
+
+        if (data.id !== username || data.type !== 'logo') {
+            httpResponse.statusCode = 401;
+            httpResponse.send('Incorrect JSON values');
+            return;
+        }
+
+        if (httpRequest.files) {
+            const result = img.storeImage(httpRequest, httpResponse);
+
+            if (result.err) {
+                console.log(`Creating new logo failed: ${result.err}`);
+                httpResponse.send(result.err);
+                return;
+            }
+
+            data.image_path = result.path;
+        }
+
+        httpResponse.setHeader('Content-Type', 'application/json');
+        httpResponse.send(data);
+    },
+    blurb: function(httpRequest, httpResponse) {
+        let data = JSON.parse(httpRequest.body);
+
+        token = data.token;
+        blurb = data.blurb;// TODO: check if this exceeds maximum length
+        let username = '';
+
+        db.query('SELECT * FROM tokens WHERE token = ?', token, function(err, rows) {
+            if (err) {
+                console.log(`Invalid token: ${err}`);
+                httpResponse.statusCode = 403;
+                httpResponse.send(err);
+                return;
+            } else {
+                username = rows[0].username;
+            }
+        });
+
+        db.query('UPDATE users SET report_blurb = ? WHERE username = ?', [blurb, username], function(err) {
+            if (err) {
+                console.log(`Could not update blurb: ${err}`);
+                httpResponse.send(err);
+                return;
+            }
+        });
+
+        httpResponse.send('Blurb update successful');
     }
 }

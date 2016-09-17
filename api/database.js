@@ -65,7 +65,6 @@ createTables();
 module.exports = {
     conn: connection,
     newId: function() {
-        // TODO
-        return Array(config.IdLength + 1).join("A");
+        return Math.random().toString(36).slice(2, 2 + config.IdLength);
     }
 }

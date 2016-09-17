@@ -1,9 +1,11 @@
 'use strict';
+const config = require('./config.js');
+
 module.exports = {
     newToken: function(username) {
         return {
             username: username,
-            token: Array(config.TokenLength + 1).join("B")
+            token: Math.random().toString(36).slice(2, 2 + config.TokenLength)
         }
     }
 }

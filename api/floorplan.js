@@ -1,5 +1,6 @@
 'use strict';
 const db = require('./database.js');
+const img = require('./image.js');
 
 module.exports = {
     add: function(httpRequest, httpResponse) {
@@ -12,6 +13,14 @@ module.exports = {
                 return;
             }
         });
+
+        if (httpRequest.files) {
+            const err = img.storeImage(httpRequest, httpResponse);
+
+            if (err) {
+                return;
+            }
+        }
 
         httpResponse.setHeader('Content-Type', 'application/json');
         httpResponse.send(data);

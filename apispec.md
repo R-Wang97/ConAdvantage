@@ -19,6 +19,10 @@ Paths
 			/{id}/get
 			/{id}/delete
 			/list
+		/item
+			/{id}
+			/{id}/update
+			/{id}/remove
 		/printout
 			/room/{id} <- creates a printout of the form you hand to tenant. should include url, qr code, logo and blurb
 			/report <- damage report for the rooms

@@ -7,6 +7,9 @@ function getFileExtension(filePath) {
 }
 
 module.exports = {
+    // Form must contain encType="multipart/form-data"
+    // Must have <input type="file" name="image" />
+    // Call this function in any function that might take a file
     storeImage = function(httpRequest, httpResponse) {
         const data = JSON.parse(httpRequest.body);
         const fileType = data.type; // Either 'floorplan' or 'item'
@@ -17,7 +20,7 @@ module.exports = {
             if (err) {
                 console.log(`Rename file failed: ${err}`);
                 httpResponse.send(err);
-                return;
+                return err;
             }
 
             httpResponse.send(newPath);

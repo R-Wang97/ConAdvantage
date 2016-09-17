@@ -7,7 +7,12 @@ class FloorPlanImage extends React.Component {
 
 	render() {
 		return (
-			<img></img>
+			<div className='row'>
+				<div className='col-md-6'>
+					<h2>Floor Plan</h2>
+					<img></img>
+				</div>
+			</div>
 		);
 	}
 }

@@ -40,7 +40,6 @@ class App extends React.Component {
 		if (this.state.dotIsClicked === false) {
 			return (
 				<div className='container-fluid'>
-					<h1>App Goes Here</h1>
 					<FloorPlanImage />
 				</div>
 			);

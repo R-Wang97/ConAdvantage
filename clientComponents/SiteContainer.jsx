@@ -3,6 +3,8 @@ import React from 'react';
 import Welcome from './Welcome.jsx';
 import App from './App.jsx'
 
+const idLength = 8;
+
 class SiteContainer extends React.Component {
     constructor(props) {
         super(props);
@@ -18,8 +20,8 @@ class SiteContainer extends React.Component {
     }
 
     getRoomInfo = () => {   
-        //get {id} from window.location.href
-        const id = "";
+        const url = window.location.href
+        const id = url.substr(url.length - 8);
         $.ajax({
             url: "/api/" + id,
             cache: false,

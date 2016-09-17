@@ -16,7 +16,7 @@ class SiteContainer extends React.Component {
     }
 
     componentDidMount() {
-        this.getRoomInfo();
+        //this.getRoomInfo();
     }
 
     getRoomInfo = () => {   

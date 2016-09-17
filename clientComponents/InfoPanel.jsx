@@ -16,8 +16,9 @@ class InfoPanel extends React.Component {
         });
     }
 
-    onSaveClick = () => {
+    onSaveClick = (e) => {
         //Endpoint is '/api/{id}/update' 
+        e.preventDefault();
         $.ajax({
             url: '/api/' + roomId + '/update',
             cache: false,
@@ -43,7 +44,7 @@ class InfoPanel extends React.Component {
         return (
             <div className='col-md-6' id='infoForm'>
                 <h2 className='text-center'>Details Panel</h2>
-                <form onSubmit={this.onSaveClick} method="post">
+                <form onSubmit={this.onSaveClick} action="">
                     <label>Item</label>
                     <input className="form-control" placeholder="Enter item name"/>
                     <label className="radio-inline">
@@ -59,8 +60,11 @@ class InfoPanel extends React.Component {
                         <label>Description</label>
                         <textarea className="form-control" rows="3"></textarea>
                     </div>
+                    <label className="btn btn-default btn-file">
+                        Browse <input type="file" style={{display: 'none'}}/>
+                    </label>
                     <div className='btnInfoPanel' id='btnInfoPanel'>
-                        <button type='button' className='btn btn-primary btn-md'>Save</button>
+                        <button type='submit' className='btn btn-primary btn-md'>Save</button>
                         <button type='button' className='btn btn-default btn-md'>Clear</button>
                         <button type='button' className='btn btn-default btn-md'>Cancel</button>
                     </div>

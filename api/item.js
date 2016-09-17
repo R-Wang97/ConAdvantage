@@ -6,7 +6,7 @@ module.exports = {
     get: function(httpRequest, httpResponse) {
         const id = httpRequest.params.id;
 
-        db.conn.query('SELECT * FROM items WHERE id = ?', id, function(err, rows) {
+        db.query('SELECT * FROM items WHERE id = ?', id, function(err, rows) {
             if (err) {
                 console.log(`Get items failed: ${err}`);
                 httpResponse.send(err);
@@ -21,7 +21,7 @@ module.exports = {
         const id = httpRequest.params.id;
         const data = JSON.parse(httpRequest.body);
 
-        db.conn.query('UPDATE items SET * WHERE id = ?', [data, id], function(err) {
+        db.query('UPDATE items SET * WHERE id = ?', [data, id], function(err) {
             if (err) {
                 console.log(`Update item failed: ${err}`);
                 httpResponse.send(err);
@@ -41,7 +41,7 @@ module.exports = {
             return;
         }
 
-        db.conn.query('DELETE FROM items WHERE id = ?', id, function(err) {
+        db.query('DELETE FROM items WHERE id = ?', id, function(err) {
             if (err) {
                 console.log(`Delete item failed: ${err}`);
                 httpResponse.send(err);

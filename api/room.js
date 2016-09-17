@@ -1,11 +1,12 @@
 'use strict';
 const db = require('./database.js');
+const utils = require('./utils.js');
 
 module.exports = {
     generate: function(httpRequest, httpResponse) {
         const floorPlanId = httpRequest.params.floorplan_id;
 
-        db.conn.query('SELECT * FROM floorplans WHERE id = ?', floorPlanId, function(err, rows) {
+        db.query('SELECT * FROM floorplans WHERE id = ?', floorPlanId, function(err, rows) {
             if (err) {
                 console.log(`Create new report failed: ${err}`);
                 httpResponse.send(err);
@@ -21,14 +22,14 @@ module.exports = {
         const defaultItems = '';
 
         const newReport = {
-            id: db.newId(),
+            id: utils.newId(),
             floorplan_id: floorPlanId,
             default_items: defaultItems,
             custom_items: '',
             submitted: 0
         };
 
-        db.conn.query('INSERT INTO reports SET ?', newReport, function(err) {
+        db.query('INSERT INTO reports SET ?', newReport, function(err) {
             if (err) {
                 console.log(`Create report failed: ${err}`);
                 httpResponse.send(err);
@@ -42,7 +43,7 @@ module.exports = {
     list: function(httpRequest, httpResponse) {
         const reports = [];
 
-        db.conn.query('SELECT * FROM reports', function(err, rows) {
+        db.query('SELECT * FROM reports', function(err, rows) {
             if (err) {
                 console.log(`List reports failed: ${err}`);
                 httpResponse.send(err);
@@ -60,7 +61,7 @@ module.exports = {
     get: function(httpRequest, httpResponse) {
         const id = httpRequest.params.id;
 
-        db.conn.query('SELECT * FROM reports WHERE id = ?', id, function(err, rows) {
+        db.query('SELECT * FROM reports WHERE id = ?', id, function(err, rows) {
             if (err) {
                 console.log(`Get report failed: ${err}`);
                 httpResponse.send(err);
@@ -74,7 +75,7 @@ module.exports = {
     delete: function(httpRequest, httpResponse) {
         const id = httpRequest.params.id;
 
-        db.conn.query('DELETE * FROM reports WHERE id = ?', id, function(err) {
+        db.query('DELETE * FROM reports WHERE id = ?', id, function(err) {
             if (err) {
                 console.log(`Delete report failed: ${err}`);
                 httpResponse.send(err);

@@ -9,5 +9,8 @@ module.exports = {
             username: username,
             token: crypto.randomBytes(RANDOM_BYTES).toString('base64url').slice(0, config.TokenLength)
         }
+    },
+    newId: function() {
+        return crypto.randomBytes(RANDOM_BYTES).toString('base64url').slice(0, config.IdLength);
     }
 }

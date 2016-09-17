@@ -141,7 +141,7 @@ module.exports = {
                 httpResponse.send(err);
                 return;
             } else {
-                username = rows[0];
+                username = rows[0].username;
             }
         });
 
@@ -180,7 +180,7 @@ module.exports = {
                 httpResponse.send(err);
                 return;
             } else {
-                username = rows[0];
+                username = rows[0].username;
             }
         });
 

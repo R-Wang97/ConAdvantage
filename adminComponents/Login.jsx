@@ -5,13 +5,12 @@ class Login extends React.Component {
 		super(props);
 	}
 
-	onClick = () => {
-	//more backend stuff
-	//authentication stuff
-	}
-
-	login = () => {
-
+	login = (e) => {
+		e.preventDefault();
+		console.log(this.refs.username.getDOMNode.value());
+		const data = {
+			username: this.refs.username.getDOMNode.value();
+		}
 	}
 
 	render() {

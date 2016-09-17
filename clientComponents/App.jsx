@@ -41,17 +41,25 @@ class App extends React.Component {
 		if (this.state.dotIsClicked === false) {
 			return (
 				<div className='container-fluid'>
-					<FloorPlanImage />
-					<ControlPanel />
+					<div className='row'>
+						<FloorPlanImage />
+					</div>
+					<div className='row'>
+						<ControlPanel />
+					</div>
 				</div>
 			);
 		}
 		else if (this.state.dotIsClicked === true) {
 			return (
 				<div className='container-fluid'>
-					<FloorPlanImage />
-					<InfoPanel details={this.state.selectedDotObject} roomId={this.state.roomInfo.Id} unselectDot={this.unselectDot}/>
-					<ControlPanel />
+					<div className='row'>
+						<FloorPlanImage />
+						<InfoPanel details={this.state.selectedDotObject} roomId={this.state.roomInfo.Id} unselectDot={this.unselectDot}/>
+					</div>
+					<div className='row'>
+						<ControlPanel />			
+					</div>
 				</div>
 			);
 		}

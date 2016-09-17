@@ -5,7 +5,7 @@ var BUILD_DIR = path.resolve(__dirname, 'public');
 
 var config = {
     entry: {
-        client: './client/root.jsx',
+        client: './clientComponents/root.jsx',
         admin: './adminComponents/AdminContainer.jsx'
     },
     output: {

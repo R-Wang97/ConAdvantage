@@ -1,6 +1,6 @@
 import React from 'react';
 
-class Login extends React.component {
+class Login extends React.Component {
 	constructor(props) {
 		super(props);
 	}
@@ -10,21 +10,25 @@ class Login extends React.component {
 	//authentication stuff
 	}
 
+	login = () => {
+
+	}
+
 	render() {
 		return(
 			<div className='container'>
 				<div className='row'>
-                    <form onSubmit='authenticate'>
+                    <form onSubmit={this.login}>
 						<h1 className='loginText'>Administrator Login</h1>
 						<div className='form-group'>
 							<label className='txtUsername'>Username</label>
-							<input type='username' class='form-control' id='lblUsername' placeholder="Enter Username" required/>
+							<input type='username' className='form-control' id='lblUsername' placeholder="Enter Username" required/>
 						</div>
 						<div className='form-group'>
-							<label for='pwd' className='txtPassword'>Password</label>
-							<input type='password' class='form-control' id='lblPassword' placeholder="Enter Password" required/>
+							<label className='txtPassword'>Password</label>
+							<input type='password' className='form-control' id='lblPassword' placeholder="Enter Password" required/>
 						</div>
-						<button type='button' className='btn btn-primary btn-lg btn-block' onClick={this.props.changeAppState('filter')}>Login >></button>
+						<button type='button' className='btn btn-primary btn-lg btn-block'>Login</button>
 					</form>
 				</div>
 			</div>
@@ -33,3 +37,6 @@ class Login extends React.component {
 }
 
 export default Login
+
+
+// onClick={this.props.changeAppState('filter')}

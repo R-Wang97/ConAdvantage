@@ -8,7 +8,7 @@ class SiteContainer extends React.Component {
         super(props);
         this.state = {
             showWelcomeScreen: true,
-            roomInfo: [],
+            roomInfo: {},
         }
     }
 

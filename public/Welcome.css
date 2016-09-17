@@ -1,17 +1,17 @@
 body{
 	background-image: url('/Images/TealTriangleBack.jpg');
 	font-family: 'transat_textlight', Helvetica, sans-serif;
-	padding-left: 10%;
-	padding-right: 10%;
+	margin-left: 10%;
+	margin-right: 10%;
 }
 
 #welcomePageName{
 	background-image:  url('Images/WhiteGradBack.jpg');
-	padding: 1.5%;
+	/*padding: 1.5%*/;
 }
 
 #welcomePageName h1{
-	margin-bottom: -0.12%;
+	/*margin-bottom: -0.12%;*/
 }
 
 #welcomePageName hr{

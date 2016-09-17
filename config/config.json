@@ -6,5 +6,12 @@
 		"Password": "hard",
 		"Database": "conadvantage"
 	},
-	"IdLength": 8
+	"IdLength": 8,
+	"TokenLength": 24,
+	"Password": {
+		"SaltLength": 32,
+		"KeyLength": 32,
+		"Iterations": 32768,
+		"HashFunction": "sha256"
+	}
 }

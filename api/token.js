@@ -1,11 +1,13 @@
 'use strict';
 const config = require('./config.js');
+const crypto = require('crypto');
+const RANDOM_BYTES=32
 
 module.exports = {
     newToken: function(username) {
         return {
             username: username,
-            token: Math.random().toString(36).slice(2, 2 + config.TokenLength)
+            token: crypto.randomBytes(RANDOM_BYTES).toString('base64url').slice(0, config.TokenLength)
         }
     }
 }

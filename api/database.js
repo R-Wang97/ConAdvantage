@@ -3,7 +3,7 @@
 const mysql = require('mysql')
 const config = require('./config.js');
 const crypto = require('crypto');
-const RANDOM_BYTES=32
+const RANDOM_BYTES=64
 
 const connection = mysql.createConnection({
     host: config.Database.Host,
@@ -64,9 +64,4 @@ function createTables() {
 
 createTables();
 
-module.exports = {
-    conn: connection,
-    newId: function() {
-        return crypto.randomBytes(RANDOM_BYTES).toString('base64url').slice(0, config.IdLength);
-    }
-}
+module.exports = connection;

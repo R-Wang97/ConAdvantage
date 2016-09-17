@@ -2,7 +2,7 @@
 const db = require('./database.js');
 const crypto = require('crypto');
 const config = require('./config.js');
-const token = require('./token.js');
+const utils = require('./utils.js');
 
 function comparePasswordWithHash(password, hash, salt, iterations) {
     return crypto.pbkdf2Sync(password, salt, iterations, config.Password.KeyLength, config.Password.HashFunction) == hash;
@@ -33,7 +33,7 @@ module.exports = {
 
         let user = new User(data.username, data.password)
 
-        db.conn.query('INSERT INTO users SET ?', user.toObj(), function(err) {
+        db.query('INSERT INTO users SET ?', user.toObj(), function(err) {
             if (err) {
                 console.log(`Create new user failed: ${err}`);
                 httpResponse.send(err);
@@ -51,7 +51,7 @@ module.exports = {
         const password = data.password;
         
         let user = null;
-        db.conn.query('SELECT * FROM users WHERE username = ?', username, function(err, rows) {
+        db.query('SELECT * FROM users WHERE username = ?', username, function(err, rows) {
             if (err) {
                 console.log(`Login failed: ${err}`);
                 httpResponse.send(err);
@@ -63,9 +63,9 @@ module.exports = {
 
         let token = null;
         if (comparePasswordWithHash(password, user.hash, user.salt, user.iterations)) {
-            token = token.newToken(user.username);
+            token = utils.newToken(user.username);
 
-            db.conn.query('INSERT INTO tokens SET ?', token, function(err) {
+            db.query('INSERT INTO tokens SET ?', token, function(err) {
                 if (err) {
                     console.log(`Login failed: ${err}`);
                     httpResponse.send(err);
@@ -84,7 +84,7 @@ module.exports = {
 
         token = data.token;
 
-        db.conn.query('DELETE FROM tokens WHERE token = ?', token, function(err) {
+        db.query('DELETE FROM tokens WHERE token = ?', token, function(err) {
             if (err) {
                 console.log(`Logout failed: ${err}`);
                 httpResponse.send(err);
@@ -100,7 +100,7 @@ module.exports = {
         token = data.token;
         let username = '';
 
-        db.conn.query('DELETE FROM tokens WHERE token = ?', token, function(err, rows) {
+        db.query('DELETE FROM tokens WHERE token = ?', token, function(err, rows) {
             if (err) {
                 console.log(`Delete failed: ${err}`);
                 httpResponse.send(err);
@@ -110,7 +110,7 @@ module.exports = {
             }
         });
 
-        db.conn.query('DELETE FROM tokens WHERE username = ?', username, function(err) {
+        db.query('DELETE FROM tokens WHERE username = ?', username, function(err) {
             if (err) {
                 console.log(`Delete failed: ${err}`);
                 httpResponse.send(err);
@@ -118,7 +118,7 @@ module.exports = {
             }
         });
 
-        db.conn.query('DELETE FROM users WHERE username = ?', username, function(err) {
+        db.query('DELETE FROM users WHERE username = ?', username, function(err) {
             if (err) {
                 console.log(`Delete failed: ${err}`);
                 httpResponse.send(err);

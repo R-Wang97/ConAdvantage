@@ -26,7 +26,7 @@ class ControlPanel extends React.Component {
 
 	render() {
 		return (
-			<div className='col-md-6 col-md-offset-3'>
+			<div className='row' id='submitButton'>
 				<button type='button' className='btn btn-primary btn-md btn-block'>Submit</button>
 			</div>
 		);

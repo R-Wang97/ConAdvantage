@@ -9,7 +9,7 @@ class SiteContainer extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            showWelcomeScreen: false,
+            showWelcomeScreen: true,
             roomInfo: {},
             responseSubmitted: false
         }

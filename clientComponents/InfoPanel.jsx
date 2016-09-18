@@ -6,7 +6,9 @@ class InfoPanel extends React.Component {
         this.state = {
             itemInfo: props.details,
             roomId: props.roomId,
-            selectedCondition: "good"
+            selectedCondition: "good",
+            description: props.details.description,
+            title: props.details.name
         }
     }
 
@@ -29,9 +31,9 @@ class InfoPanel extends React.Component {
         let formData = this.state.itemInfo;
         formData.is_default = 1;
         formData.fixable = 0;
-        formData.name = this.refs.itemName.value;
-        formData.state = this.state.selectCondition;
-        formData.description = this.refs.textarea.value;
+        formData.name = this.state.title;
+        formData.state = this.state.selectedCondition;
+        formData.description = this.state.description;
 
         $.ajax({
             url: '/api/landlord/item/' + this.state.itemInfo.id + '/update',
@@ -59,11 +61,11 @@ class InfoPanel extends React.Component {
     }
 
     handleTitleChange = (e) => {
-        
+        this.setState({title: e.target.value});
     }
 
     updateDescription =(e) => {
-        
+        this.setState({description: e.target.value});
     }
 
     render() {
@@ -86,7 +88,7 @@ class InfoPanel extends React.Component {
                     <div className="form-group" id='descriptionDiv'>
                         <label>Description</label>
                         <textarea ref="textarea" className="form-control" rows="3" 
-                        value={this.state.itemInfo.description} onChange={this.updateDescription} />
+                        value={this.state.description} onChange={this.updateDescription} />
                     </div>
                     <div className='btnInfoPanel' id='btnInfoPanel'>
                         <button type='submit' className='btn btn-primary btn-md'>Save</button>

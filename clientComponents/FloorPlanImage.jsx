@@ -9,7 +9,7 @@ class FloorPlanImage extends React.Component {
 		return (
 			<div className='col-md-6' id='floorPlan'>
 				<h2>Floor Plan</h2>
-				<img></img>
+				<img src='resources/images/Bond.png' height='386.4px' width='285.6' />
 			</div>
 		);
 	}

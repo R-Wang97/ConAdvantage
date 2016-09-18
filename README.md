@@ -10,7 +10,7 @@ Please ensure that you have npm and MySQL installed.
 - Install MySQL for your operating system
 - `mysql -u root -p` to access your MySQL Server with your `root` password
 - `CREATE DATABASE whatbroke;`
-- `GRANT ALL PRIVILEGES ON whatbroke.* To 'what'@'localhost' IDENTIFIED BY 'broke';`
+- `GRANT ALL PRIVILEGES ON whatbroke.* TO 'what'@'localhost' IDENTIFIED BY 'broke';`
 - `quit;` to exit MySQL
 
 ### Server Setup

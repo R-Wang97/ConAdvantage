@@ -12,7 +12,8 @@ class SiteContainer extends React.Component {
             idEntered: false,
             showWelcomeScreen: true,
             roomInfo: {},
-            id: ""
+            id: "",
+            error: ""
         }
     }
 
@@ -24,7 +25,7 @@ class SiteContainer extends React.Component {
                 this.setState({roomInfo: data, idEntered: true});
             },
             error: (status) => {
-                console.error(status.status, "Couldn't get room info for id " + this.state.id); 
+                this.setState({error: "Couldn't get room info for id " + this.state.id});
             }
         });
     }
@@ -46,7 +47,10 @@ class SiteContainer extends React.Component {
                         <button className="btn btn-primary" onClick={this.getRoomInfo}>Search</button>
                     </span>
                 </div>
-            );
+                <div className="input-error">
+                    <p className="error">{this.state.error}</p>
+                </div>
+           );
         }
         else {
             if (this.state.showWelcomeScreen === true) {

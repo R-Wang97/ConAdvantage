@@ -50,6 +50,35 @@ module.exports = {
             reports = rows;
         });
 
-        // Calculate and return total number of deficiencies
+        let deficiencyCount = 0.0;
+        let totalCount = 0.0;
+        reports.forEach(function (report) {
+            let items = [];
+            const itemIds = report.default_items.split(';').concat(report.custom_items.split(';'));
+
+            itemIds.forEach(function (id) {
+                db.query('SELECT * FROM items WHERE id = ?', id, function(err, rows) {
+                    if (err) {
+                        console.log(`Get average deficiencies failed: ${err}`);
+                        httpResponse.send(err);
+                        return;
+                    }
+
+                    items.push(rows[0]);
+                });
+            });
+
+            items.forEach(function (item) {
+                if (item.state !== 'good') {
+                    count++;
+                }
+            });
+
+            totalCount++;
+        });
+
+        const averageDeficiency = deficiencyCount / totalCount;
+
+        httpResponse.send(averageDeficiency);
     }
 }

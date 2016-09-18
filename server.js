@@ -30,7 +30,7 @@ roomRouter.route('/:id/delete').post(roomApi.delete);
 const itemApi = require('./api/item.js');
 const itemRouter = express.Router({mergeParams: true});
 itemRouter.route('/add').post(itemApi.add);
-itemRouter.route('/:id').post(itemApi.get);
+itemRouter.route('/:id').get(itemApi.get);
 itemRouter.route('/:id/update').post(itemApi.update);
 itemRouter.route('/:id/remove').post(itemApi.remove);
 

@@ -19,18 +19,20 @@ class App extends React.Component {
 	componentDidMount() {
 		const itemIds = this.state.roomInfo.default_items.split(";").concat(this.state.roomInfo.custom_items.split(";"));
 		for (let i = 0; i < itemIds.length; i++) {
-			$.ajax({
-				url: "/api/landlord/item/" + itemIds[i],
-				cache: false,
-				success: (data) => {
-					const itemArray = this.state.items;
-					itemArray.push(data);
-					this.setState({items: itemArray});
-				},
-				error: (status) => {
-					console.error(status.status, "Couldn't get item info for id " + this.state.id); 
-				}	
-			});
+			if (itemIds[i] !== "") {
+				$.ajax({
+					url: "/api/landlord/item/" + itemIds[i],
+					cache: false,
+					success: (data) => {
+						const itemArray = this.state.items;
+						itemArray.push(data);
+						this.setState({items: itemArray});
+					},
+					error: (status) => {
+						console.error(status.status, "Couldn't get item info for id " + itemIds[i]); 
+					}	
+				});
+			}
 		}
 	}
 

@@ -62,7 +62,7 @@ module.exports = {
     },
     update: function(httpRequest, httpResponse) {
         const id = httpRequest.params.id;
-        const data = JSON.parse(httpRequest.body);
+        const data = JSON.parse(JSON.stringify(httpRequest.body));
 
         if (httpRequest.files) {
             const result = img.storeImage(httpRequest.files.image.path, 'item', data.id);
@@ -76,7 +76,7 @@ module.exports = {
             data.image_path = result.path;
         }
 
-        db.query('UPDATE items SET * WHERE id = ?', [data, id], function(err) {
+        db.query('UPDATE items SET ? WHERE id = ?', [data, id], function(err) {
             if (err) {
                 console.log(`Update item failed: ${err}`);
                 httpResponse.send(err);

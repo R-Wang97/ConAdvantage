@@ -41,14 +41,16 @@ class SiteContainer extends React.Component {
 	render() {
         if (this.state.idEntered === false) {
             return (
-                <div className="input-group">
-                    <input type="text" onChange={this.onChange} value={this.state.id} className="form-control" placeholder="Enter ID"></input>
-                    <span className="input-group-btn">
-                        <button className="btn btn-primary" onClick={this.getRoomInfo}>Search</button>
-                    </span>
-                </div>
-                <div className="input-error">
-                    <p className="error">{this.state.error}</p>
+                <div>
+                    <div className="input-group">
+                        <input type="text" onChange={this.onChange} value={this.state.id} className="form-control" placeholder="Enter ID"></input>
+                        <span className="input-group-btn">
+                            <button className="btn btn-primary" onClick={this.getRoomInfo}>Search</button>
+                        </span>
+                    </div>
+                    <div className="input-error">
+                        <p className="error">{this.state.error}</p>
+                    </div>
                 </div>
            );
         }

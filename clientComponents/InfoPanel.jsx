@@ -26,19 +26,18 @@ class InfoPanel extends React.Component {
         //Endpoint is '/api/{id}/update' 
         e.preventDefault();
 
-        const formData = {
-            itemName: this.refs.itemName.value,
-            condition: this.state.selectedCondition,
-            description: this.refs.textarea.value
-        }
-
-        console.log(this.state.roomId);
+        let formData = this.state.itemInfo;
+        formData.is_default = 1;
+        formData.fixable = 0;
+        formData.name = this.refs.itemName.value;
+        formData.state = this.state.selectCondition;
+        formData.description = this.refs.textarea.value;
 
         $.ajax({
-            url: '/api/' + this.state.roomId + '/update',
-            cache: false,
+            url: '/api/landlord/item/' + this.state.itemInfo.id + '/update',
             type: 'POST',
-            data: formData,
+            data: JSON.stringify(formData),
+			contentType: 'application/json',
             success: (data) => {
                 window.alert("sucesss");
             },

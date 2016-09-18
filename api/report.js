@@ -17,9 +17,10 @@ module.exports = {
         });
     },
     update: function(httpRequest, httpResponse) {
-        const report = JSON.parse(httpRequest.body);
+        const report = JSON.parse(JSON.stringify(httpRequest.body));
+        console.log(report);
 
-        db.query('UPDATE reports SET * WHERE id = ?', [report, report.id], function(err) {
+        db.query('UPDATE reports SET ? WHERE id = ?', [report, report.id], function(err) {
             if (err) {
                 console.log(`Update report failed: ${err}`);
                 httpResponse.send(err);
@@ -30,10 +31,10 @@ module.exports = {
         });
     },
     submit: function(httpRequest, httpResponse) {
-        const report = JSON.parse(httpRequest.body);
+        const report = JSON.parse(JSON.stringify(httpRequest.body));
         report.submitted = 1;
 
-        db.query('UPDATE reports SET * WHERE id = ?', [report, report.id], function(err) {
+        db.query('UPDATE reports SET ? WHERE id = ?', [report, report.id], function(err) {
             if (err) {
                 console.log(`Update report failed: ${err}`);
                 httpResponse.send(err);

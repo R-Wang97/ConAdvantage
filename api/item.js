@@ -1,8 +1,42 @@
 'use strict';
 
 const db = require('./database.js');
+const img = require('./image.js');
+const utils = require('./utils.js');
 
 module.exports = {
+    add: function(httpRequest, httpResponse) {
+        let data = JSON.parse(httpRequest.body);
+        if (!(data.report_id && data.floorplan_id)) {
+            //TODO: implement error if their shit isn't defined
+            console.log(`Bad JSON`);
+            httpResponse.send('Bad JSON, make this message better later');
+            return;
+        }
+
+        data.id = utils.newId();
+        data.is_default = false;
+
+        if (httpRequest.files) {
+            const result = img.storeImage(httpRequest.files.image.path, 'item', data.id);
+
+            if (result.err) {
+                console.log(`Creating new logo failed: ${result.err}`);
+                httpResponse.send(result.err);
+                return;
+            }
+
+            data.image_path = result.path;
+        }
+
+        db.query('INSERT INTO items SET ?', data, function(err) {
+            if (err) {
+                console.log(`Create new item failed: ${err}`);
+                httpResponse.send(err);
+                return;
+            }
+        });
+    },
     get: function(httpRequest, httpResponse) {
         const id = httpRequest.params.id;
 
@@ -21,6 +55,18 @@ module.exports = {
         const id = httpRequest.params.id;
         const data = JSON.parse(httpRequest.body);
 
+        if (httpRequest.files) {
+            const result = img.storeImage(httpRequest.files.image.path, 'item', data.id);
+
+            if (result.err) {
+                console.log(`Creating new logo failed: ${result.err}`);
+                httpResponse.send(result.err);
+                return;
+            }
+
+            data.image_path = result.path;
+        }
+
         db.query('UPDATE items SET * WHERE id = ?', [data, id], function(err) {
             if (err) {
                 console.log(`Update item failed: ${err}`);
@@ -32,7 +78,7 @@ module.exports = {
             httpResponse.send(data)
         });
     },
-    delete: function(httpRequest, httpResponse) {
+    remove: function(httpRequest, httpResponse) {
         const id = httpRequest.params.id;
         const data = JSON.parse(httpRequest.body);
 

@@ -28,16 +28,14 @@ module.exports = {
     // Form must contain encType="multipart/form-data"
     // Must have <input type="file" name="image" />
     // Call this function in any function that might take a file
-    storeImage: function(httpRequest, httpResponse) {
+    storeImage: function(path, type, id) {
         const data = JSON.parse(httpRequest.body);
         const fileType = data.type; // Either 'floorplan', 'item' or 'logo'
-        const id = data.id;
-        const newPath = `${__dirname}/uploads/${id}_${fileType}${getFileExtension(httpRequest.files.image.path)}`;
+        const newPath = `${__dirname}/uploads/${id}_${type}`;
 
-        fs.readFile(httpRequest.files.image.path, 'hex', function(err, data) {
+        fs.readFile(path, 'hex', function(err, data) {
             if (err) {
                 console.log(`Failed to read file: ${err}`);
-                httpResponse.send(err);
                 return {
                     err: err,
                     path: null
@@ -48,7 +46,6 @@ module.exports = {
                 let error = new Error('File is not an image');
                 error.http_code = 415;
                 console.log(`${error}`);
-                httpResponse.send(error);
                 return {
                     err: error,
                     path: null
@@ -56,10 +53,9 @@ module.exports = {
             }
         });
 
-        fs.rename(httpRequest.files.image.path, newPath, function (err, data) {
+        fs.rename(path, newPath, function (err, data) {
             if (err) {
                 console.log(`Rename file failed: ${err}`);
-                httpResponse.send(err);
                 return {
                     err: err,
                     path: null

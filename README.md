@@ -9,8 +9,8 @@ Please ensure that you have npm and MySQL installed.
 ### Database Setup
 - Install MySQL for your operating system
 - `mysql -u root -p` to access your MySQL Server with your `root` password
-- `CREATE DATABASE conadvantage;`
-- `GRANT ALL PRIVILEGES ON conadvantage.* To 'conned'@'localhost' IDENTIFIED BY 'hard';`
+- `CREATE DATABASE whatbroke;`
+- `GRANT ALL PRIVILEGES ON whatbroke.* To 'what'@'localhost' IDENTIFIED BY 'broke';`
 - `quit;` to exit MySQL
 
 ### Server Setup

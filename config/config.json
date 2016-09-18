@@ -3,9 +3,9 @@
 	"ServerPort": 3030,
 	"Database": {
 		"Host": "localhost",
-		"Username": "conned",
-		"Password": "hard",
-		"Database": "conadvantage"
+		"Username": "what",
+		"Password": "broke",
+		"Database": "whatbroke"
 	},
 	"IdLength": 8,
 	"TokenLength": 24,

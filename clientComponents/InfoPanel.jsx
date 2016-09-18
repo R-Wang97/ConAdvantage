@@ -62,6 +62,10 @@ class InfoPanel extends React.Component {
         
     }
 
+    updateDescription =(e) => {
+        
+    }
+
     render() {
         return (
             <div className='col-md-6' id='infoForm'>
@@ -81,7 +85,8 @@ class InfoPanel extends React.Component {
                   
                     <div className="form-group" id='descriptionDiv'>
                         <label>Description</label>
-                        <textarea ref="textarea" className="form-control" rows="3" defaultValue={this.state.itemInfo.description}></textarea>
+                        <textarea ref="textarea" className="form-control" rows="3" 
+                        value={this.state.itemInfo.description} onChange={this.updateDescription} />
                     </div>
                     <div className='btnInfoPanel' id='btnInfoPanel'>
                         <button type='submit' className='btn btn-primary btn-md'>Save</button>

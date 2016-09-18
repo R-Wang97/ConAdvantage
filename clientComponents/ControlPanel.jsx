@@ -3,15 +3,18 @@ import React from 'react';
 class ControlPanel extends React.Component {
 	constructor(props) {
 		super(props);
+		this.state = {
+			id: props.roomId
+		}
 	}
 
 	onSubmit = () => {
-		//Endpoint is '/api/{id}/submit'
 		$.ajax({
-			url: '/api' + id + '/submit',
+			url: '/api' + this.state.id + '/submit',
 			cache: false,
 			success: (data) => {
 				window.alert("Sucessfully submitted");
+				window.location.reload();
 			},
 			error: (status) => {
 				console.error(status.status, 'Couldn\'t get room info for id ' + roomId);

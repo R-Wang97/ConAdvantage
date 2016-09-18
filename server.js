@@ -1,6 +1,8 @@
 'use strict';
 const express = require('express');
+const bodyParser = require('body-parser')
 const app = express();
+app.use(bodyParser.json());
 
 const config = require('./api/config.js');
 
@@ -30,7 +32,7 @@ roomRouter.route('/:id/delete').post(roomApi.delete);
 const itemApi = require('./api/item.js');
 const itemRouter = express.Router({mergeParams: true});
 itemRouter.route('/add').post(itemApi.add);
-itemRouter.route('/:id').post(itemApi.get);
+itemRouter.route('/:id').get(itemApi.get);
 itemRouter.route('/:id/update').post(itemApi.update);
 itemRouter.route('/:id/remove').post(itemApi.remove);
 

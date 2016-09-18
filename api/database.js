@@ -36,7 +36,7 @@ function createTables() {
         }
     });
 
-    connection.query('CREATE TABLE IF NOT EXISTS reports (id VARCHAR(64), floorplan_id VARCHAR(64), default_items VARCHAR(2048), custom_items VARCHAR(2048), submitted BIT)', function(err) {
+    connection.query('CREATE TABLE IF NOT EXISTS reports (id VARCHAR(64), tenant VARCHAR(64), number VARCHAR(64), floorplan_name VARCHAR(64), floorplan_id VARCHAR(64), default_items VARCHAR(2048), custom_items VARCHAR(2048), submitted BIT)', function(err) {
         if (err) {
             console.log(`Create table reports error: ${err}`);
         } else {

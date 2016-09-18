@@ -6,7 +6,8 @@ class FloorPlanImage extends React.Component {
 	}
 
 	mapClickList = (e) => {
-		console.log(e.target.coords.split(','));
+		const coords = e.target.coords.split(',');
+		this.props.clickDot(coords[0], coords[1]);
 	}
 
 	render() {

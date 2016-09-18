@@ -30,7 +30,7 @@ class AdminContainer extends React.Component {
 			);
 		}
 
-		else if (this.state.showScreenState === 'filter') {
+		else if (this.state.showScreenState === 'menu') {
 			return (
 				<div>
 					<Filter changeAppState={this.changeAppState} />

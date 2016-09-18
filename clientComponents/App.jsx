@@ -4,33 +4,51 @@ import FloorPlanImage from './FloorPlanImage.jsx';
 import InfoPanel from './InfoPanel.jsx';
 import ControlPanel from './ControlPanel.jsx';
 
-//Import JSON file for floor plan dot objects
-//import ...
-
 class App extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			dotIsClicked: false,
-			selectedDotObject: {
-				item: '',
-				condition: '', 
-				description: ''
-			},
-			roomInfo: {},
-			creatingCustom: false	
+			selectedDotObject: {},
+			roomInfo: props.roomData,
+			creatingCustom: false,
+			items: []	
+		}
+	}
+
+	componentDidMount() {
+		const itemIds = this.state.roomInfo.default_items.split(";").concat(this.state.roomInfo.custom_items.split(";"));
+		for (let i = 0; i < itemIds.length; i++) {
+			if (itemIds[i] !== "") {
+				$.ajax({
+					url: "/api/landlord/item/" + itemIds[i],
+					cache: false,
+					success: (data) => {
+						const itemArray = this.state.items;
+						itemArray.push(data);
+						this.setState({items: itemArray});
+					},
+					error: (status) => {
+						console.error(status.status, "Couldn't get item info for id " + itemIds[i]); 
+					}	
+				});
+			}
 		}
 	}
 
 	componentWillReceiveProps(nextProps) {
-		this.setState({roomInfo: nextProps.roomInfo})
+		this.setState({roomInfo: nextProps.roomData})
 	} 
 
-	dotClicked = (input) => {
-		this.setState({
-			dotIsClicked: true,
-			selectedDotObject: input
-		});
+	dotClicked = (x, y) => {
+		for (let i = 0; i < this.state.items.length; i++) {
+			if ((this.state.items[i].x == x) && (this.state.items[i].y == y)) {
+				this.setState({
+					dotIsClicked: true,
+					selectedDotObject: this.state.items[i]
+				});
+			}
+		}
 	}
 
 	unselectDot = () => {
@@ -46,7 +64,7 @@ class App extends React.Component {
 						<hr />
 					</div>
 					<div className='formPanels'>
-						<FloorPlanImage />
+						<FloorPlanImage clickDot={this.dotClicked}/>
 					</div>
 					<div className='row'>
 						<ControlPanel />
@@ -62,11 +80,11 @@ class App extends React.Component {
 						<hr />
 					</div>
 					<div className='row' id='formPanels'>
-						<FloorPlanImage />
-						<InfoPanel details={this.state.selectedDotObject} roomId={this.state.roomInfo.Id} unselectDot={this.unselectDot}/>
+						<FloorPlanImage clickDot={this.dotClicked} />
+						<InfoPanel details={this.state.selectedDotObject} roomId={this.state.roomInfo.id} unselectDot={this.unselectDot}/>
 					</div>
 					<div className='row'>
-						<ControlPanel />			
+						<ControlPanel roomId={this.state.roomInfo.id}/>			
 					</div>
 				</div>
 			);

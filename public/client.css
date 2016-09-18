@@ -59,6 +59,10 @@ hr {
 	animation-duration: 2s;
 }
 
+.error {
+    color: red;
+}
+
 .formText {
 	background-image: url('resources/images/GreyHexBack.jpg');
 	padding: 0.5%;

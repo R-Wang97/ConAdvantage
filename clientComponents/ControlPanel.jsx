@@ -31,7 +31,7 @@ class ControlPanel extends React.Component {
 	render() {
 		return (
 			<div className='row' id='submitButton'>
-				<button type='button' className='btn btn-primary btn-md btn-block'>Submit</button>
+				<button type='button' className='btn btn-primary btn-md btn-block' onClick={this.onSubmit}>Submit</button>
 			</div>
 		);
 	}

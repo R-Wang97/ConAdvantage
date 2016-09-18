@@ -54,6 +54,7 @@ class InfoPanel extends React.Component {
     }
 
     onCancelClick = () => {
+        this.onClearClick();
         this.props.unselectDot();
     }
 

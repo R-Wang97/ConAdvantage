@@ -12,12 +12,13 @@ class ControlPanel extends React.Component {
 		$.ajax({
 			url: '/api' + this.state.id + '/submit',
 			cache: false,
+			type: 'POST',
 			success: (data) => {
 				window.alert("Sucessfully submitted");
 				window.location.reload();
 			},
 			error: (status) => {
-				console.error(status.status, 'Couldn\'t get room info for id ' + roomId);
+				console.error(status.status, 'Couldn\'t get room info for id ' + this.state.id);
 			}
 		});
 	}

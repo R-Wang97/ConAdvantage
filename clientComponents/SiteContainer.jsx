@@ -9,16 +9,14 @@ class SiteContainer extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            idEntered: true,
-            showWelcomeScreen: false,
+            idEntered: false,
+            showWelcomeScreen: true,
             roomInfo: {},
             id: ""
         }
     }
 
     getRoomInfo = () => {   
-        // const url = window.location.href
-        // const id = url.substr(url.length - 8);
         $.ajax({
             url: "/api/" + this.state.id,
             cache: false,
@@ -54,7 +52,7 @@ class SiteContainer extends React.Component {
             if (this.state.showWelcomeScreen === true) {
                 if (this.state.roomInfo.submitted.data[0] === 1) {
                     return (
-                        <h4>You have already submitted your room condition form.</h4>
+                        <h4>You have submitted your room condition form.</h4>
                     );
                 }
                 return (

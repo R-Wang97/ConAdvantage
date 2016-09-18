@@ -4,7 +4,7 @@ class InfoPanel extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            itemInfo: [],
+            itemInfo: props.details,
             roomId: props.roomId,
             selectedCondition: "good"
         }
@@ -61,7 +61,7 @@ class InfoPanel extends React.Component {
                 <h2>Details Panel</h2>
                 <form onSubmit={this.onSaveClick} action="">
                     <label>Item</label>
-                    <input className="form-control" ref="itemName" placeholder="Enter item name"/>
+                    <input className="form-control" ref="itemName" placeholder="Enter item name"/>{this.state.itemInfo.name}
 
                     <label>Item Condition</label>
                     <select className="form-control" onChange={this.selectCondition}>
@@ -72,7 +72,7 @@ class InfoPanel extends React.Component {
                   
                     <div className="form-group" id='descriptionDiv'>
                         <label>Description</label>
-                        <textarea ref="textarea" className="form-control" rows="3"></textarea>
+                        <textarea ref="textarea" className="form-control" rows="3">{this.state.itemInfo.description}</textarea>
                     </div>
                     <div className='btnInfoPanel' id='btnInfoPanel'>
                         <button type='submit' className='btn btn-primary btn-md'>Save</button>

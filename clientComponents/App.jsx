@@ -4,19 +4,12 @@ import FloorPlanImage from './FloorPlanImage.jsx';
 import InfoPanel from './InfoPanel.jsx';
 import ControlPanel from './ControlPanel.jsx';
 
-//Import JSON file for floor plan dot objects
-//import ...
-
 class App extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			dotIsClicked: true,
-			selectedDotObject: {
-				item: '',
-				condition: '', 
-				description: ''
-			},
+			selectedDotObject: {},
 			roomInfo: props.roomData,
 			creatingCustom: false,
 			items: []	
@@ -45,11 +38,15 @@ class App extends React.Component {
 		this.setState({roomInfo: nextProps.roomData})
 	} 
 
-	dotClicked = (input) => {
-		this.setState({
-			dotIsClicked: true,
-			selectedDotObject: input
-		});
+	dotClicked = (x, y) => {
+		for (let i = 0; i < itemIds.length; i++) {
+			if (items[i].x === x && items[i].y === y) {
+				this.setState({
+					dotIsClicked: true,
+					selectedDotObject: items[i]
+				});
+			}
+		}
 	}
 
 	unselectDot = () => {
@@ -65,7 +62,7 @@ class App extends React.Component {
 						<hr />
 					</div>
 					<div className='formPanels'>
-						<FloorPlanImage />
+						<FloorPlanImage clickDot={this.dotClicked}/>
 					</div>
 					<div className='row'>
 						<ControlPanel />
@@ -81,11 +78,11 @@ class App extends React.Component {
 						<hr />
 					</div>
 					<div className='row' id='formPanels'>
-						<FloorPlanImage />
+						<FloorPlanImage clickDot={this.dotClicked} />
 						<InfoPanel details={this.state.selectedDotObject} roomId={this.state.roomInfo.id} unselectDot={this.unselectDot}/>
 					</div>
 					<div className='row'>
-						<ControlPanel />			
+						<ControlPanel roomId={this.state.roomInfo.id}/>			
 					</div>
 				</div>
 			);

@@ -20,10 +20,6 @@ class InfoPanel extends React.Component {
         });
     }
 
-    selectCondition = (e) => {
-        this.setState({selectedCondition: e.target.value});
-    }
-
     onSaveClick = (e) => {
         //Endpoint is '/api/{id}/update' 
         e.preventDefault();
@@ -64,7 +60,11 @@ class InfoPanel extends React.Component {
         this.setState({title: e.target.value});
     }
 
-    updateDescription =(e) => {
+    selectCondition = (e) => {
+        this.setState({selectedCondition: e.target.value});
+    }
+
+    updateDescription = (e) => {
         this.setState({description: e.target.value});
     }
 
@@ -76,7 +76,7 @@ class InfoPanel extends React.Component {
                     <label>Item</label>
                     <input className="form-control" ref="itemName" 
                     placeholder="Enter item name" onChange={this.handleTitleChange} 
-                    value={this.state.itemInfo.name}/>
+                    value={this.state.title}/>
 
                     <label>Item Condition</label>
                     <select className="form-control" onChange={this.selectCondition}>

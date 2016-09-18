@@ -18,7 +18,26 @@ class App extends React.Component {
 				description: ''
 			},
 			roomInfo: props.roomData,
-			creatingCustom: false	
+			creatingCustom: false,
+			items: []	
+		}
+	}
+
+	componentDidMount() {
+		const itemIds = this.state.roomInfo.split(";");
+		for (let i = 0; i < itemIds.length; i++) {
+			$.ajax({
+				url: "/api/landlord/item/" + itemIds[i],
+				cache: false,
+				success: (data) => {
+					const itemArray = this.state.items;
+					itemArray.push(data);
+					this.setState({items: itemArray});
+				},
+				error: (status) => {
+					console.error(status.status, "Couldn't get item info for id " + this.state.id); 
+				}	
+			});
 		}
 	}
 

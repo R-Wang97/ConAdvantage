@@ -1,5 +1,5 @@
 body{
-	background-image: url('../Images/TealTriangleBack.jpg');
+	background-image: url('../resources/images/TealTriangleBack.jpg');
 	font-family: 'transat_textlight', Helvetica, sans-serif;
 	margin-left: 10%;
 	margin-right: 10%;
@@ -13,7 +13,7 @@ hr{
 }
 
 #loginContent{
-	background-image: url('../Images/WhiteGradBack.jpg');
+	background-image: url('../resources/images/WhiteGradBack.jpg');
 	padding: 20%;
 	padding-top: 8%;
 	padding-bottom: 10%;
@@ -35,7 +35,7 @@ hr{
 }
 
 #filterContent{
-	background-image: url('../Images/GreyWoodBack.jpg');
+	background-image: url('../resources/images/GreyWoodBack.jpg');
 	padding: 20%;
 	padding-top: 8%;
 	padding-bottom: 10%;
@@ -56,7 +56,7 @@ hr{
 }
 
 #filter1{
-	background-image: url('../Images/WhiteGradBack.jpg');
+	background-image: url('../resources/images/WhiteGradBack.jpg');
 	padding-right: 5%;
 	padding-left: 5%;	
 	padding-top: 2%;
@@ -84,7 +84,7 @@ hr{
 }
 
 .reportContent{
-	background-image: url('../Images/WhiteGradBack.jpg');
+	background-image: url('../resources/images/WhiteGradBack.jpg');
 	padding: 3%;
 	width: 85%;
 	border-radius: 50px;

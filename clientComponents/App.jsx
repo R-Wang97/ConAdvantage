@@ -67,7 +67,7 @@ class App extends React.Component {
 						<FloorPlanImage clickDot={this.dotClicked}/>
 					</div>
 					<div className='row'>
-						<ControlPanel />
+						<ControlPanel roomId={this.state.roomInfo.id}/>
 					</div>
 				</div>
 			);

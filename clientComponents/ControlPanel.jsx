@@ -8,9 +8,14 @@ class ControlPanel extends React.Component {
 		}
 	}
 
+	componentWillReceiveProps(nextProps) {
+		this.setState({id: nextProps.roomId});
+	}
+
 	onSubmit = () => {
+		console.log(this.state.id);
 		$.ajax({
-			url: '/api' + this.state.id + '/submit',
+			url: '/api/' + this.state.id + '/submit',
 			cache: false,
 			type: 'POST',
 			success: (data) => {

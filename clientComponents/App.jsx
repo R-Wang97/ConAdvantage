@@ -17,7 +17,7 @@ class App extends React.Component {
 				condition: '', 
 				description: ''
 			},
-			roomInfo: {},
+			roomInfo: props.roomData,
 			creatingCustom: false	
 		}
 	}
@@ -63,7 +63,7 @@ class App extends React.Component {
 					</div>
 					<div className='row' id='formPanels'>
 						<FloorPlanImage />
-						<InfoPanel details={this.state.selectedDotObject} roomId={this.state.roomInfo.Id} unselectDot={this.unselectDot}/>
+						<InfoPanel details={this.state.selectedDotObject} roomId={this.state.roomInfo.id} unselectDot={this.unselectDot}/>
 					</div>
 					<div className='row'>
 						<ControlPanel />			

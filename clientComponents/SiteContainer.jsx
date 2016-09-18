@@ -9,8 +9,8 @@ class SiteContainer extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            idEntered: false,
-            showWelcomeScreen: true,
+            idEntered: true,
+            showWelcomeScreen: false,
             roomInfo: {},
             id: ""
         }

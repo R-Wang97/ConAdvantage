@@ -46,9 +46,7 @@ class App extends React.Component {
 						<hr />
 					</div>
 					<div className='formPanels'>
-						<div className='row' id='floorPlan'>
-							<FloorPlanImage />
-						</div>
+						<FloorPlanImage />
 					</div>
 					<div className='row'>
 						<ControlPanel />
@@ -63,11 +61,9 @@ class App extends React.Component {
 						<h2>Room Condition Form</h2>
 						<hr />
 					</div>
-					<div className='formPanels'>
-						<div className='row' id='floorPlan'>
-							<FloorPlanImage />
-							<InfoPanel details={this.state.selectedDotObject} roomId={this.state.roomInfo.Id} unselectDot={this.unselectDot}/>
-						</div>
+					<div className='row' id='formPanels'>
+						<FloorPlanImage />
+						<InfoPanel details={this.state.selectedDotObject} roomId={this.state.roomInfo.Id} unselectDot={this.unselectDot}/>
 					</div>
 					<div className='row'>
 						<ControlPanel />			

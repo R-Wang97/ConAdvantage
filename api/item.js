@@ -8,9 +8,10 @@ module.exports = {
     add: function(httpRequest, httpResponse) {
         let data = JSON.parse(httpRequest.body);
         if (!(data.report_id && data.floorplan_id)) {
-            //TODO: implement error if their shit isn't defined
-            console.log(`Bad JSON`);
-            httpResponse.send('Bad JSON, make this message better later');
+            let error = new Error('JSON must include report_id and floorplan_id');
+            error.http_code = 400;
+            console.log(`${error}`);
+            httpResponse.send(error);
             return;
         }
 

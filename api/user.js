@@ -132,27 +132,18 @@ module.exports = {
     logo: function(httpRequest, httpResponse) {
         let data = JSON.parse(httpRequest.body);
 
-        let username = '';
+        let username = '';//TODO: This may cause an async error
 
-        db.query('SELECT * FROM tokens WHERE token = ?', token, function(err, rows) {
-            if (err) {
-                console.log(`Invalid token: ${err}`);
-                httpResponse.statusCode = 403;
-                httpResponse.send(err);
-                return;
-            } else {
-                username = rows[0].username;
-            }
-        });
-
-        if (data.id !== username || data.type !== 'logo') {
-            httpResponse.statusCode = 401;
-            httpResponse.send('Incorrect JSON values');
+        const token = httpRequest.headers['Authorization'];
+        const rToken = !utils.checkToken(token)
+        if (!rToken) {
+            httpResponse.send('Invalid token');
+            httpResponse.statusCode = 403;
             return;
         }
 
         if (httpRequest.files) {
-            const result = img.storeImage(httpRequest, httpResponse);
+            const result = img.storeImage(httpRequest.files.image.path, 'logo', rToken.username);
 
             if (result.err) {
                 console.log(`Creating new logo failed: ${result.err}`);

@@ -15,8 +15,11 @@ module.exports = {
             return;
         }
 
+        data.id = utils.newId();
+        data.username = rToken.username;
+
         if (httpRequest.files) {
-            const result = img.storeImage(httpRequest, httpResponse);
+            const result = img.storeImage(httpRequest.files.image.path, 'floorplan', data.id);
 
             if (result.err) {
                 console.log(`Create new floorplan failed: ${result.err}`);

@@ -1,5 +1,5 @@
 {
-  "name": "ConAdvantage",
+  "name": "WhatBroke",
   "version": "0.1.0",
   "description": "Digitizes the process of reporting deficiencies for rental units.",
   "main": "server.js",
@@ -27,12 +27,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/R-Wang97/ConAdvantage.git"
+    "url": "git+https://github.com/R-Wang97/WhatBroke.git"
   },
   "author": "Allen Huang, David Lu, Denton Liu, Ryan Wang",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/R-Wang97/ConAdvantage/issues"
+    "url": "https://github.com/R-Wang97/WhatBroke/issues"
   },
-  "homepage": "https://github.com/R-Wang97/ConAdvantage#readme"
+  "homepage": "https://github.com/R-Wang97/WhatBroke#readme"
 }

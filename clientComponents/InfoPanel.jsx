@@ -11,6 +11,7 @@ class InfoPanel extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
+        console.log(nextProps);
         this.setState({
             itemInfo: nextProps.details,
             roomId: nextProps.roomId
@@ -25,7 +26,7 @@ class InfoPanel extends React.Component {
         //Endpoint is '/api/{id}/update' 
         e.preventDefault();
 
-        const data = {
+        const formData = {
             itemName: this.refs.itemName.value,
             condition: this.state.selectedCondition,
             description: this.refs.textarea.value
@@ -36,6 +37,8 @@ class InfoPanel extends React.Component {
         $.ajax({
             url: '/api/' + this.state.roomId + '/update',
             cache: false,
+            type: 'POST',
+            data: formData,
             success: (data) => {
                 window.alert("sucesss");
             },
@@ -55,13 +58,19 @@ class InfoPanel extends React.Component {
         this.props.unselectDot();
     }
 
+    handleTitleChange = (e) => {
+        
+    }
+
     render() {
         return (
             <div className='col-md-6' id='infoForm'>
                 <h2>Details Panel</h2>
                 <form onSubmit={this.onSaveClick} action="">
                     <label>Item</label>
-                    <input className="form-control" ref="itemName" placeholder="Enter item name"/>{this.state.itemInfo.name}
+                    <input className="form-control" ref="itemName" 
+                    placeholder="Enter item name" onChange={this.handleTitleChange} 
+                    value={this.state.itemInfo.name}/>
 
                     <label>Item Condition</label>
                     <select className="form-control" onChange={this.selectCondition}>
@@ -72,7 +81,7 @@ class InfoPanel extends React.Component {
                   
                     <div className="form-group" id='descriptionDiv'>
                         <label>Description</label>
-                        <textarea ref="textarea" className="form-control" rows="3">{this.state.itemInfo.description}</textarea>
+                        <textarea ref="textarea" className="form-control" rows="3" defaultValue={this.state.itemInfo.description}></textarea>
                     </div>
                     <div className='btnInfoPanel' id='btnInfoPanel'>
                         <button type='submit' className='btn btn-primary btn-md'>Save</button>

@@ -8,7 +8,7 @@ class App extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			dotIsClicked: true,
+			dotIsClicked: false,
 			selectedDotObject: {},
 			roomInfo: props.roomData,
 			creatingCustom: false,
@@ -41,11 +41,11 @@ class App extends React.Component {
 	} 
 
 	dotClicked = (x, y) => {
-		for (let i = 0; i < itemIds.length; i++) {
-			if (items[i].x === x && items[i].y === y) {
+		for (let i = 0; i < this.state.items.length; i++) {
+			if ((this.state.items[i].x == x) && (this.state.items[i].y == y)) {
 				this.setState({
 					dotIsClicked: true,
-					selectedDotObject: items[i]
+					selectedDotObject: this.state.items[i]
 				});
 			}
 		}

@@ -27,6 +27,13 @@ roomRouter.route('/list').post(roomApi.list);
 roomRouter.route('/:id/get').post(roomApi.get);
 roomRouter.route('/:id/delete').post(roomApi.delete);
 
+const itemApi = require('./api/item.js');
+const itemRouter = express.Router({mergeParams: true});
+itemRouter.route('/add').post(itemApi.add);
+itemRouter.route('/:id').post(itemApi.get);
+itemRouter.route('/:id/update').post(itemApi.update);
+itemRouter.route('/:id/remove').post(itemApi.remove);
+
 const printoutApi = require('./api/printout.js');
 const printoutRouter = express.Router({mergeParams: true});
 printoutRouter.route('/room/:id').post(printoutApi.produce);
@@ -41,6 +48,7 @@ analyticsRouter.route('/average').get(analyticsApi.getAverage);
 const landlordRouter = express.Router({mergeParams: true});
 landlordRouter.use('/floorplan', floorPlanRouter);
 landlordRouter.use('/room', roomRouter);
+landlordRouter.use('/item', itemRouter);
 landlordRouter.use('/printout', printoutRouter);
 landlordRouter.use('/analytics', analyticsRouter);
 

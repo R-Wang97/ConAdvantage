@@ -22,6 +22,7 @@ Paths
 			/{id}/delete
 			/list
 		/item
+			/add
 			/{id}
 			/{id}/update
 			/{id}/remove

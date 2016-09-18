@@ -43,7 +43,7 @@ class InfoPanel extends React.Component {
     render() {
         return (
             <div className='col-md-6' id='infoForm'>
-                <h2 className='text-center'>Details Panel</h2>
+                <h2>Details Panel</h2>
                 <form onSubmit={this.onSaveClick} action="">
                     <label>Item</label>
                     <input className="form-control" placeholder="Enter item name"/>
@@ -56,7 +56,7 @@ class InfoPanel extends React.Component {
                     <label className="radio-inline">
                         <input type="checkbox" value="damaged"/> Damaged
                     </label> 
-                    <div className="form-group">
+                    <div className="form-group" id='descriptionDiv'>
                         <label>Description</label>
                         <textarea className="form-control" rows="3"></textarea>
                     </div>

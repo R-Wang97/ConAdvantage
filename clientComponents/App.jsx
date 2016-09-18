@@ -17,7 +17,7 @@ class App extends React.Component {
 	}
 
 	componentDidMount() {
-		const itemIds = this.state.roomInfo.split(";");
+		const itemIds = this.state.roomInfo.default_items.split(";").concat(this.state.roomInfo.custom_items.split(";"));
 		for (let i = 0; i < itemIds.length; i++) {
 			$.ajax({
 				url: "/api/landlord/item/" + itemIds[i],

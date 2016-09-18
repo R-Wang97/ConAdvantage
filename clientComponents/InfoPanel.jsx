@@ -40,7 +40,7 @@ class InfoPanel extends React.Component {
                 window.alert("sucesss");
             },
             error: (status) => {
-                console.error(status.status, 'Couldn\'t get room info for id ' + roomId);
+                console.error(status.status, 'Couldn\'t get room info for id ' + this.state.roomId);
             } 
         });
         this.props.unselectDot();

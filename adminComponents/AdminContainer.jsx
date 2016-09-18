@@ -9,7 +9,7 @@ class AdminContainer extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			showScreenState: 'report'
+			showScreenState: 'login'
 		} 
 	}
 
@@ -17,9 +17,9 @@ class AdminContainer extends React.Component {
 		//ajax stuff
 	}
 
-	// changeAppState = (stateNum) => {
-	//     this.setState({showWelcomeScreen: stateNum});
-	// }
+	changeAppState = (stateNum) => {
+	    this.setState({showWelcomeScreen: stateNum});
+	}
 
 	render() {
 		if (this.state.showScreenState === 'login') {

@@ -4,9 +4,9 @@ class Welcome extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			name: '',
-			roomNum: '',
-			roomType: ''
+			name: props.roomData.tenant,
+			roomNum: props.roomData.number,
+			roomType: props.roomData.floorplan_name
 		};
 	}
 

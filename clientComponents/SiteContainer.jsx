@@ -11,7 +11,7 @@ class SiteContainer extends React.Component {
         this.state = {
             idEntered: false,
             showWelcomeScreen: true,
-            roomData: {},
+            roomInfo: {},
             id: ""
         }
     }
@@ -59,7 +59,7 @@ class SiteContainer extends React.Component {
                 }
                 return (
                     <div>
-                        <Welcome changeAppState={this.changeAppState} roomData={this.state.roomData}/>
+                        <Welcome changeAppState={this.changeAppState} roomData={this.state.roomInfo}/>
                     </div>
                 );
             }

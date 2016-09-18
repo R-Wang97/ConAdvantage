@@ -1,6 +1,8 @@
 'use strict';
 const db = require('./database.js');
 const utils = require('./utils.js');
+const it = require('./item.js');
+const fs = require('fs');
 
 module.exports = {
     generate: function(httpRequest, httpResponse) {
@@ -14,6 +16,7 @@ module.exports = {
             return;
         }
 
+        let floorplan = null;
         db.query('SELECT * FROM floorplans WHERE id = ?', floorPlanId, function(err, rows) {
             if (err) {
                 console.log(`Create new report failed: ${err}`);
@@ -28,13 +31,38 @@ module.exports = {
                 httpResponse.statusCode = 403;
                 return;
             }
+
+            floorplan = rows[0];
         });
 
         // Somehow load default items as JSON
         const defaultItems = '';
 
+        const defaultFile = `list/${floorplan.name}.json`;
+        const defaults = JSON.parse(
+            fs.readFileSync(defaultFile)
+        );
+
+        if (defaults.name != floorplan.name) {
+            console.log(`Floorplan names do not match: ${floorPlanId}`);
+            httpResponse.send(`Floorplan names do not match: ${floorPlanId}`);
+            return;
+        }
+
+        const reportId = utils.newId();
+        defaults.items.forEach(function (item) {
+            item.id = utils.newId();
+            item.image_path = '';
+            item.floorplan_id = floorPlanId;
+            item.report_id = reportId;
+            item.description = '';
+            it.addItem(item);
+
+            defaultItems.concat(item.id + ';');
+        });
+
         const newReport = {
-            id: utils.newId(),
+            id: reportId,
             floorplan_id: floorPlanId,
             default_items: defaultItems,
             custom_items: '',

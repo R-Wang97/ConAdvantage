@@ -1,0 +1,50 @@
+{
+    "name": "bond",
+    "items": [
+        {
+            "name": "Bed",
+            "x": 246,
+            "y": 80,
+            "is_default": true,
+            "state": "good",
+            "severity": 1,
+            "fixable": false
+        },
+        {
+            "name": "Shower",
+            "x": 254,
+            "y": 166,
+            "is_default": true,
+            "state": "good",
+            "severity": 1,
+            "fixable": false
+        },
+        {
+            "name": "Counter",
+            "x": 41,
+            "y": 217,
+            "is_default": true,
+            "state": "good",
+            "severity": 1,
+            "fixable": false
+        },
+        {
+            "name": "Couch",
+            "x": 32,
+            "y": 324,
+            "is_default": true,
+            "state": "good",
+            "severity": 1,
+            "fixable": false
+        },
+        {
+            "name": "Coffee Table",
+            "x": 82,
+            "y": 325,
+            "is_default": true,
+            "state": "good",
+            "severity": 1,
+            "fixable": false
+        }
+    ]
+}

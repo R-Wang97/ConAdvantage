@@ -38,6 +38,14 @@ module.exports = {
             }
         });
     },
+    addItem: function(item) {
+        db.query('INSERT INTO items SET ?', item, function(err) {
+            if (err) {
+                console.log(`Create new item failed: ${err}`);
+                return;
+            }
+        });
+    },
     get: function(httpRequest, httpResponse) {
         const id = httpRequest.params.id;
 

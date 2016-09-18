@@ -31,8 +31,8 @@ class Welcome extends React.Component {
 					<h3>Your Room Type: {this.state.roomType}</h3>
 				</div>
 				<div className='row' id='welcomeConfirmInfo'>
-					<h5>If this information is correct please proceed to the next page.</h5>
-					<h5>If this is not you please contact ~~~~~~~~~~</h5> 
+					<h5>If this information is correct, please proceed to the next page.</h5>
+					<h5>If this is not you, please contact building administration.</h5> 
 				</div>
 				<div className='row' id='welcomeButton'>
 					<button type='button' className='btn btn-primary btn-lg btn-block' onClick={this.props.changeAppState}>Continue to Form</button>

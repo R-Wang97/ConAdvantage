@@ -47,7 +47,8 @@ class InfoPanel extends React.Component {
     }
 
     onClearClick = () => {
-
+        this.refs.itemName.value = "";
+        this.refs.textarea.value = ""; 
     }
 
     onCancelClick = () => {
@@ -75,8 +76,8 @@ class InfoPanel extends React.Component {
                     </div>
                     <div className='btnInfoPanel' id='btnInfoPanel'>
                         <button type='submit' className='btn btn-primary btn-md'>Save</button>
-                        <button type='button' className='btn btn-default btn-md'>Clear</button>
-                        <button type='button' className='btn btn-default btn-md'>Cancel</button>
+                        <button type='button' className='btn btn-default btn-md' onClick={this.onClearClick}>Clear</button>
+                        <button type='button' className='btn btn-default btn-md' onClick={this.onCancelClick}>Cancel</button>
                     </div>
                 </form>
             </div>

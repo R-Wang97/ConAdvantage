@@ -26,7 +26,7 @@ class Welcome extends React.Component {
 					<hr />
 				</div>
 				<div className='row' id='welcomeTenantInfo'>
-					<h3>Hello {this.state.name}</h3>
+					<h3>Hello, {this.state.name}</h3>
 					<h3>Your Room Number is: {this.state.roomNum}</h3>
 					<h3>Your Room Type: {this.state.roomType}</h3>
 				</div>
